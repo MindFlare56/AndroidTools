@@ -1,1 +1,1 @@
-include ':app', ':gradlegithubtest'
+include ':app', ':datetime'
