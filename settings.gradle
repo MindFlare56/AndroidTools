@@ -1,1 +1,1 @@
-include ':app', ':datetime'
+include ':app', ':javatools', ':androidtools'

@@ -8,8 +8,9 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/androidtools" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/datetime" />
+            <option value="$PROJECT_DIR$/javatools" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
