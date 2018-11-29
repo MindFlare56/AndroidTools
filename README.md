@@ -6,6 +6,7 @@ Tools to make your life easier in java and android
 
 # How to add
 
+Add this line + the current version the your app.gradle:<br>
 implementation 'com.github.MindFlare56:Tools:Tag'
 
 Visit the below link to get the current version and the installation explanation<br/>
