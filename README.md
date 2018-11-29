@@ -40,3 +40,17 @@ listView.setAdapter(new DefaultAdapter(context, list.size(), R.layout.layout) {
     }
 });
 ```
+
+# ViewTools usage examples
+```java
+public class SomeFragment extends Fragment {
+    ...
+    private void someMethod() {    
+        if (condition) {
+            ViewTools.changeFragment(activity, R.id.mainDrawerFrame, new SomeFragment(), getString("Fragment title"));
+        } else {
+            ViewTools.changeFragment(activity, R.id.mainDrawerFrame, new SomeOtherFragment(), getString("Other fragment title"));
+        }
+    }
+}
+```
