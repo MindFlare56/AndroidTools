@@ -2,7 +2,7 @@
 
 Tools to make your life easier in java and android
 - Java: DataTime
-- Android: ViewTools, RunnableTask
+- Android: ViewTools, RunnableTask, WebImage, DefaultAdapter
 
 # How to add
 
