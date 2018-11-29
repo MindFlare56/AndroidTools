@@ -1,4 +1,4 @@
-package com.mindf.utils.datetime;
+package com.mindf.utils.java;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

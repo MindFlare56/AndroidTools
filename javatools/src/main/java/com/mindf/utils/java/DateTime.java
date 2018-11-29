@@ -1,4 +1,4 @@
-package com.mindf.utils.datetime;
+package com.mindf.utils.java;
 
 import java.text.DateFormat;
 import java.text.ParseException;

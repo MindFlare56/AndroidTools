@@ -1,4 +1,4 @@
-package com.mindf.utils.datetime;
+package com.mindf.utils.android;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -15,12 +15,12 @@ import static org.junit.Assert.*;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 @RunWith(AndroidJUnit4.class)
-public class ExampleInstrumentedDateTime {
+public class ExampleInstrumentedTest {
     @Test
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.mindf.utils.gradlegithubtest.test", appContext.getPackageName());
+        assertEquals("com.mindf.utils.runnabletask.test", appContext.getPackageName());
     }
 }

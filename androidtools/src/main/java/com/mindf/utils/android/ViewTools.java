@@ -1,4 +1,4 @@
-package com.mindf.utils.runnabletask;
+package com.mindf.utils.android;
 
 import android.app.Activity;
 import android.content.Context;
@@ -20,7 +20,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
-import com.mindf.utils.datetime.DateTime;
+import com.mindf.utils.java.DateTime;
 
 import java.util.ArrayList;
 import java.util.List;

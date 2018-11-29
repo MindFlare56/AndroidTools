@@ -1,4 +1,4 @@
-package com.mindf.utils.runnabletask;
+package com.mindf.utils.android;
 
 import org.junit.Test;
 
