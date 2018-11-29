@@ -9,6 +9,7 @@ Tools to make your life easier in java and android
 implementation 'com.github.MindFlare56:Tools:Tag'
 
 Visit the below link to get the current version and the installation explanation
+
 https://jitpack.io/#MindFlare56/Tools
 # ------------------------------------------------
 # RunnableTask usage example
