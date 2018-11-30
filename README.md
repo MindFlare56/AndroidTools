@@ -53,6 +53,7 @@ listView.setAdapter(new DefaultAdapter(context, list.size(), R.layout.layout) {
     public static double getCurrentMilliSecondsValue();
     public static String getADateMilliSeconds(String dateString);
     public static String changeDateFormatToIso8601(String stringDate, final String OLD_FORMAT);
+    public static String extractDay(String dateString); // "dd"
     public static boolean isDateBefore(String inputDate, String comparedDate);
     public static boolean isDateValid(String inputDate);
     public static int getAge(String birthDate);
