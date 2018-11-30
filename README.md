@@ -30,7 +30,7 @@ RunnableTask runnableTask = new RunnableTask() {
 };
 runnableTask.start(this, delayInMilliseconds);
 ```
-# DefaultAdapter usage example
+# DefaultAdapter && WebImage usage example
 ```java
 listView.setAdapter(new DefaultAdapter(context, list.size(), R.layout.layout) {
     @Override
