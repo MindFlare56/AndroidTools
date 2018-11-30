@@ -58,6 +58,8 @@ public class SomeFragment extends Fragment {
 private void someMethod(int progress) {
     ViewTools.logv("Progress made: " + progress + "!");
 }
-/**/ Console output example:
-/**/ V/Debug | 17:43:24 ->: Progress made: 100!
+/**/ 
+Console output example:
+V/Debug | 17:43:24 ->: Progress made: 100!
+**/
 ```
