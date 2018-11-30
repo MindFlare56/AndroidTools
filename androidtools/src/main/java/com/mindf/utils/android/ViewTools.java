@@ -54,6 +54,10 @@ public class ViewTools {
         return ResourcesCompat.getColor(context.getResources(), id, theme);
     }
 
+    public static int getColor(Context context, int id) {
+        return ResourcesCompat.getColor(context.getResources(), id, null);
+    }
+
     public static Fragment changeFragment(AppCompatActivity appCompatActivity, int frameId, Fragment fragment, String tag) {
         FragmentTransaction fragmentTransaction = appCompatActivity.getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(fragment, tag);
@@ -137,6 +141,10 @@ public class ViewTools {
 
     public static void logv(Object data) {
         Log.v("Debug | " + DateTime.getCurrentTime() + " -> ", String.valueOf(data));
+    }
+
+    public static void logv(Object data, Object data2) {
+        Log.v("Debug | " + DateTime.getCurrentTime() + " -> ", String.valueOf(data + " | " + data2));
     }
 
     public static void biglogv(Object data) {
