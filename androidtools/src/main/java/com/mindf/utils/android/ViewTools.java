@@ -3,11 +3,14 @@ package com.mindf.utils.android;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.transition.Explode;
 import android.util.Log;
@@ -22,9 +25,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import com.mindf.utils.java.DateTime;
 
+import org.jetbrains.annotations.Nullable;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
+
+import butterknife.Optional;
 
 public class ViewTools {
 
@@ -41,6 +48,10 @@ public class ViewTools {
                 return result;
             }
         }
+    }
+
+    public static int getColor(Context context, int id, @Nullable Resources.Theme theme) {
+        return ResourcesCompat.getColor(context.getResources(), id, theme);
     }
 
     public static Fragment changeFragment(AppCompatActivity appCompatActivity, int frameId, Fragment fragment, String tag) {
