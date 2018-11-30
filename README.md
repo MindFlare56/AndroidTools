@@ -43,10 +43,11 @@ listView.setAdapter(new DefaultAdapter(context, list.size(), R.layout.layout) {
 
 # DateTime method prototype showcase
 ```java
-    public static String getCurrentDateTime();
-    public static String getCurrentDate();
-    public static String getCurrentYear();
-    public static String getCurrentTime(); // HH:mm:ss
+    // format == iso8601
+    public static String getCurrentDateTime(); "yyyy-MM-dd HH:mm:ss"
+    public static String getCurrentDate(); // "yyyy-MM-dd"
+    public static String getCurrentYear(); // "yyyy"
+    public static String getCurrentTime(); // "HH:mm:ss"
     public static String getCurrentHours();
     public static String getCurrentMilliSeconds();
     public static double getCurrentMilliSecondsValue();
