@@ -41,6 +41,23 @@ listView.setAdapter(new DefaultAdapter(context, list.size(), R.layout.layout) {
 });
 ```
 
+# DateTime method prototype showcase
+```java
+    public static String getCurrentDateTime();
+    public static String getCurrentDate();
+    public static String getCurrentYear();
+    public static String getCurrentTime(); // HH:mm:ss
+    public static String getCurrentHours();
+    public static String getCurrentMilliSeconds();
+    public static double getCurrentMilliSecondsValue();
+    public static String getADateMilliSeconds(String dateString);
+    public static String changeDateFormatToIso8601(String stringDate, final String OLD_FORMAT);
+    public static boolean isDateBefore(String inputDate, String comparedDate);
+    public static boolean isDateValid(String inputDate);
+    public static int getAge(String birthDate);
+    ...............
+```
+
 # ViewTools usage examples
 ```java
 public class SomeFragment extends Fragment {
