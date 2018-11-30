@@ -82,17 +82,17 @@ public class DateTime {
     }
 
 /*
-public static String getAYearMilliSeconds(String yearString) {
-    //todo
-}
+    public static String getAYearMilliSeconds(String yearString) {
+        //todo
+    }
 
-public static String getAMonthMilliSeconds(String yearString) {
-    //todo
-}
+    public static String getAMonthMilliSeconds(String monthString) {
+        //todo
+    }
 
-public static String getADayMilliSeconds(String yearString) {
-    //todo
-}
+    public static String getADayMilliSeconds(String dayString) {
+        //todo
+    }
 */
 
     public static String changeDateFormatToIso8601(String stringDate, final String OLD_FORMAT) {
@@ -204,44 +204,44 @@ public static String getADayMilliSeconds(String yearString) {
         return yearBetweenCurentDate > 150;
     }
 
-    public static double getDifferenceInMilliSecondsBetweenTwoDates(String inputDate, String comparedDate) {
+    public static double getMilliSecondsBetweenTwoDates(String inputDate, String comparedDate) {
         double milliSecondsInputDate = Double.parseDouble(getADateMilliSeconds(inputDate));
         double milliSecondsComparedDate = Double.parseDouble(getADateMilliSeconds(comparedDate));
         return milliSecondsInputDate - milliSecondsComparedDate;
     }
 
     public static double getDayBetweenTwoDates(String inputDate, String comparedDate) {
-        double differenceInMilliSeconds = getDifferenceInMilliSecondsBetweenTwoDates(inputDate, comparedDate);
+        double differenceInMilliSeconds = getMilliSecondsBetweenTwoDates(inputDate, comparedDate);
         double milliSecondsInADay = 8.64e+7;
         return differenceInMilliSeconds / milliSecondsInADay;
     }
 
     public static double getMonthBetweenTwoDates(String inputDate, String comparedDate) {
-        double differenceInMilliSeconds = getDifferenceInMilliSecondsBetweenTwoDates(inputDate, comparedDate);
+        double differenceInMilliSeconds = getMilliSecondsBetweenTwoDates(inputDate, comparedDate);
         double milliSecondsInAMonth = 2.628e+9;
         return Math.round(differenceInMilliSeconds / milliSecondsInAMonth);
     }
 
     public static double getYearsBetweenTwoDates(String inputDate, String comparedDate) {
-        double differenceInMilliSeconds = getDifferenceInMilliSecondsBetweenTwoDates(inputDate, comparedDate);
+        double differenceInMilliSeconds = getMilliSecondsBetweenTwoDates(inputDate, comparedDate);
         double milliSecondsInAYear = 3.154e+10;
         return Math.round(differenceInMilliSeconds / milliSecondsInAYear);
     }
 
     public static double getHoursBetweenTwoDates(String inputDate, String comparedDate) {
-        double differenceInMilliSeconds = getDifferenceInMilliSecondsBetweenTwoDates(inputDate, comparedDate);
+        double differenceInMilliSeconds = getMilliSecondsBetweenTwoDates(inputDate, comparedDate);
         double milliSecondsInAHour = 3.6e+6;
         return differenceInMilliSeconds / milliSecondsInAHour;
     }
 
     public static double getMinutesBetweenTwoDates(String inputDate, String comparedDate) {
-        double deferenceInMilliSeconds = getDifferenceInMilliSecondsBetweenTwoDates(inputDate, comparedDate);
+        double deferenceInMilliSeconds = getMilliSecondsBetweenTwoDates(inputDate, comparedDate);
         int milliSecondsInAMinute = 60000;
         return deferenceInMilliSeconds / milliSecondsInAMinute;
     }
 
     public static double getSecondsBetweenTwoDates(String inputDate, String comparedDate) {
-        double differenceInMilliSeconds = getDifferenceInMilliSecondsBetweenTwoDates(inputDate, comparedDate);
+        double differenceInMilliSeconds = getMilliSecondsBetweenTwoDates(inputDate, comparedDate);
         short milliSecondsInASecond = 1000;
         return differenceInMilliSeconds / milliSecondsInASecond;
     }

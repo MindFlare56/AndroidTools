@@ -121,7 +121,7 @@ public class ViewTools {
     }
 
     public static void biglogv(Context context, Object data) {
-        Log.v("From: " + context.getClass().getName() + "| Debug | " + DateTime.getCurrentTime() + " -> \n\n", String.valueOf(data) + "\n\n");
+        logv(context, "\n\n" + data + "\n\n");
     }
 
     public static void logv(Object data) {
