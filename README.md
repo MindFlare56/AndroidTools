@@ -82,3 +82,16 @@ Console output example:
 V/Debug | 17:43:24 ->: Progress made: 100!
 **/
 ```
+
+# Tools usage example
+```java
+Map<String, SomeObject> someObjectMap = getSomeObjectMap();
+List<SomeObject> someObjects = Tools.mapToArray(someObjectMap);
+listView.setAdapter(new DefaultAdapter(context, list.size(), R.layout.layout) {
+    @Override
+    public void adaptView(int position, View view) {
+        WebImage.setImageView(activity, view.findViewById(R.id.image), someObjects.get(position).getImageUrl(), someWidth, someHeight);
+        ((TextView) view.findViewById(R.id.text)).setText(someObjects.get(position).getInfo());
+    }
+});
+```
