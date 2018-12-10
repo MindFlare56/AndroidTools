@@ -32,7 +32,7 @@ runnableTask.start(this, delayInMilliseconds);
 ```
 # DefaultAdapter && WebImage usage example
 ```java
-listView.setAdapter(new DefaultAdapter(context, list.size(), R.layout.layout) {
+listView.setAdapter(new RecyclerAdapter(context, list.size(), R.layout.layout) {
     @Override
     public void adaptView(int position, View view) {
         WebImage.setImageView(activity, view.findViewById(R.id.image), list.get(position).getImageUrl(), someWidth, someHeight);
