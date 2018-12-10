@@ -47,6 +47,7 @@ abstract class DefaultListAdapter extends BaseAdapter {
             convertView = LayoutInflater.from(context).inflate(layout, parent, false);
             viewHolder = new DefaultListAdapter.ViewHolder(convertView);
         }
+        getItem(position);
         return convertView;
     }
 
