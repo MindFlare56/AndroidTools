@@ -3,9 +3,9 @@ package com.mindf.utils.android;
 import android.content.Context;
 import android.view.View;
 
-public abstract class DefaultAdapter extends RecyclerAdapter {
+public abstract class RecyclerAdatper extends DefaultRecyclerAdapter {
 
-    protected DefaultAdapter(Context context, int size, int layout) {
+    protected RecyclerAdatper(Context context, int size, int layout) {
         super(context, size, layout);
     }
 

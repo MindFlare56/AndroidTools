@@ -7,14 +7,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-abstract class RecyclerAdapter extends RecyclerView.Adapter {
+abstract class DefaultRecyclerAdapter extends RecyclerView.Adapter {
 
     private Context context;
     private int size;
     private int layout;
-    private int position;
 
-    RecyclerAdapter(Context context, int size, int layout) {
+    DefaultRecyclerAdapter(Context context, int size, int layout) {
         this.context = context;
         this.layout = layout;
         this.size = size;
