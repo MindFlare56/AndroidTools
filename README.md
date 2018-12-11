@@ -30,7 +30,7 @@ RunnableTask runnableTask = new RunnableTask() {
 };
 runnableTask.start(this, delayInMilliseconds);
 ```
-# Recycler && WebImage usage example
+# RecyclerAdapter && WebImage usage example
 ```java
 listView.setAdapter(new RecyclerAdapter(context, list.size(), R.layout.layout) {
     @Override
@@ -39,6 +39,27 @@ listView.setAdapter(new RecyclerAdapter(context, list.size(), R.layout.layout) {
         ((TextView) view.findViewById(R.id.text)).setText(list.get(position).getInfo());
     }
 });
+```
+# RecyclerListView
+```java
+    @BindView(R.id.recyclerview) RecyclerView recyclerView;
+    @BindView(R.id.test_textview) TextView textView;
+
+    @Override
+    protected void onCreate(final Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
+        final ArrayList<String> strings = new ArrayList<>();
+        strings.add("string 1");
+        strings.add("string 2");       
+        new RecyclerListView(recyclerView, this, strings.size(), R.layout.test_view) {
+            @Override
+            protected void adaptView(int position, View view) {
+                textView.setText(strings.get(position));
+            }
+        };
+    }
 ```
 
 # DateTime method prototype showcase
