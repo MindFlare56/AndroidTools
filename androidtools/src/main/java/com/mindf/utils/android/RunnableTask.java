@@ -11,7 +11,7 @@ public interface RunnableTask extends Runnable {
     Map<String, Boolean> conditionsDone = new HashMap<>();
     int[] progress = {0};
     boolean[] isRunning = {false};
-    //void run();
+    void run();
     void progress(); // user has to set the progress after condition is done
     void end();
 
@@ -65,7 +65,7 @@ public interface RunnableTask extends Runnable {
             if (conditionsDone.get(name) == null) {
                 conditionsDone.put(name, true);
                 increaseProgress(progressAmount);
-                ViewTools.logv("Progress made: " + progressAmount + "!");
+                ViewTools.logi(RunnableTask.class.getSimpleName(), "Progress made: " + progressAmount + "!");
             }
         }
     }

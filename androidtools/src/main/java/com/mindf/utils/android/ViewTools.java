@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.ActivityOptionsCompat;
@@ -17,6 +16,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -30,8 +30,6 @@ import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
-
-import butterknife.Optional;
 
 public class ViewTools {
 
@@ -132,7 +130,11 @@ public class ViewTools {
     }
 
     public static void logv(Context context, Object data) {
-        Log.v("From: " + context.getClass().getName() + "| Debug | " + DateTime.getCurrentTime() + " -> ", String.valueOf(data));
+        Log.v("| Debug | " + ": From: " + context.getClass().getName() + DateTime.getCurrentTime() + " -> ", String.valueOf(data));
+    }
+
+    public static void logi(Context context, String info, Object data) {
+        Log.i(info + ": From: " + context.getClass().getName() + " | " + DateTime.getCurrentTime() + " -> ", String.valueOf(data));
     }
 
     public static void biglogv(Context context, Object data) {
@@ -141,6 +143,10 @@ public class ViewTools {
 
     public static void logv(Object data) {
         Log.v("Debug | " + DateTime.getCurrentTime() + " -> ", String.valueOf(data));
+    }
+
+    public static void logi(String info, Object data) {
+        Log.i(info + " | " + DateTime.getCurrentTime() + " -> ", String.valueOf(data));
     }
 
     public static void logv(Object data, Object data2) {
