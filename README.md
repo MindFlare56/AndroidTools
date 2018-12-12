@@ -1,3 +1,4 @@
+[![](https://jitpack.io/v/MindFlare56/Tools.svg)](https://jitpack.io/#MindFlare56/Tools)
 # Tools
 
 Tools to make your life easier in java and android
