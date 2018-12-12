@@ -15,4 +15,9 @@ public class Tools {
         }
         return castedObject;
     }
+
+    public String capitalize(String string) {
+        string = string.toLowerCase();
+        return Character.toUpperCase(string.charAt(0)) + string.substring(1);
+    }
 }

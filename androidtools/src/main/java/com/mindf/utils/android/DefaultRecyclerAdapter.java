@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import butterknife.ButterKnife;
+
 abstract class DefaultRecyclerAdapter extends RecyclerView.Adapter {
 
     private Context context;
@@ -20,7 +22,7 @@ abstract class DefaultRecyclerAdapter extends RecyclerView.Adapter {
         this.size = size;
     }
 
-    void adaptView(int position, View view) {}
+    void adaptView(int position, View layoutView) {}
 
     @NonNull
     @Override

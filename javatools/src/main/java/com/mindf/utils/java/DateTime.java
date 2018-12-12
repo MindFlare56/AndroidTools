@@ -167,10 +167,20 @@ public class DateTime {
         return milliSecondsStringDate > milliSecondsCurrentDate;
     }
 
+    public static boolean isAfterCurrentDate(long millisecondsDate) {
+        double milliSecondsCurrentDate = Double.parseDouble(getADateMilliSeconds(getCurrentDate()));
+        return millisecondsDate > milliSecondsCurrentDate;
+    }
+
     public static boolean isBeforeCurrentDate(String stringDate) {
         double milliSecondsCurrentDate = Double.parseDouble(getADateMilliSeconds(getCurrentDate()));
         double milliSecondsStringDate = Double.parseDouble(getADateMilliSeconds(stringDate));
         return milliSecondsStringDate < milliSecondsCurrentDate;
+    }
+
+    public static boolean isBeforeCurrentDate(long millisecondsDate) {
+        double milliSecondsCurrentDate = Double.parseDouble(getADateMilliSeconds(getCurrentDate()));
+        return millisecondsDate < milliSecondsCurrentDate;
     }
 
     public static boolean isEqualsCurrentDate(String stringDate) {
@@ -179,16 +189,31 @@ public class DateTime {
         return milliSecondsStringDate == milliSecondsCurrentDate;
     }
 
+    public static boolean isEqualsCurrentDate(long millisecondsDate) {
+        double milliSecondsCurrentDate = Double.parseDouble(getADateMilliSeconds(getCurrentDate()));
+        return millisecondsDate == milliSecondsCurrentDate;
+    }
+
     public static boolean isAfterOrEqualsCurrentDate(String stringDate) {
         double milliSecondsCurrentDate = Double.parseDouble(getADateMilliSeconds(getCurrentDate()));
         double milliSecondsStringDate = Double.parseDouble(getADateMilliSeconds(stringDate));
         return milliSecondsStringDate >= milliSecondsCurrentDate;
     }
 
+    public static boolean isAfterOrEqualsCurrentDate(long millisecondsDate) {
+        double milliSecondsCurrentDate = Double.parseDouble(getADateMilliSeconds(getCurrentDate()));
+        return millisecondsDate >= milliSecondsCurrentDate;
+    }
+
     public static boolean isBeforeOrEqualsCurrentDate(String stringDate) {
         double milliSecondsCurrentDate = Double.parseDouble(getADateMilliSeconds(getCurrentDate()));
         double milliSecondsStringDate = Double.parseDouble(getADateMilliSeconds(stringDate));
         return milliSecondsStringDate <= milliSecondsCurrentDate;
+    }
+
+    public static boolean isBeforeOrEqualsCurrentDate(long millisecondsDate) {
+        double milliSecondsCurrentDate = Double.parseDouble(getADateMilliSeconds(getCurrentDate()));
+        return millisecondsDate <= milliSecondsCurrentDate;
     }
 
     public static boolean isMinor(String age) {

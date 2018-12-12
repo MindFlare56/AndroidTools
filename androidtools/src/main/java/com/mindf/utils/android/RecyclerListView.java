@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import butterknife.ButterKnife;
+
 public abstract class RecyclerListView {
 
     private Context context;
@@ -17,7 +19,7 @@ public abstract class RecyclerListView {
     private RecyclerView.LayoutManager layoutManager;
     private View view;
 
-    protected abstract void adaptView(int position, View view);
+    protected abstract void adaptView(int position, View layoutView);
 
     protected RecyclerListView(RecyclerView recyclerView, @NonNull Context context, int size, int layout) {
         this.size = size;
