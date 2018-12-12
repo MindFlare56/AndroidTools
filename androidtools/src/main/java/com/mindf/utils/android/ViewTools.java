@@ -3,6 +3,7 @@ package com.mindf.utils.android;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
@@ -12,6 +13,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.transition.Explode;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,7 +30,10 @@ import com.mindf.utils.java.DateTime;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class ViewTools {
@@ -295,6 +300,18 @@ public class ViewTools {
             images.add(imageView);
         }
         return images;
+    }
+
+    public static String logList(List<?> list) {
+        String log = Arrays.toString(list.toArray());
+        logv(log);
+        return log;
+    }
+
+    public static String logMap(Map<?, ?> map) {
+        String log = Arrays.toString(map.keySet().toArray());
+        logv(log);
+        return log;
     }
 }
 

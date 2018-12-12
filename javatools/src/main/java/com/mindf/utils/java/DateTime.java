@@ -190,8 +190,7 @@ public class DateTime {
     }
 
     public static boolean isEqualsCurrentDate(long millisecondsDate) {
-        double milliSecondsCurrentDate = Double.parseDouble(getADateMilliSeconds(getCurrentDate()));
-        return millisecondsDate == milliSecondsCurrentDate;
+        return millisecondsDate == getCurrentMilliSecondsValue();
     }
 
     public static boolean isAfterOrEqualsCurrentDate(String stringDate) {
