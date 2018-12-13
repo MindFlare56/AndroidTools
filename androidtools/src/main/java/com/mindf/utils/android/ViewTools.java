@@ -159,7 +159,7 @@ public class ViewTools {
     }
 
     public static void biglogv(Object data) {
-        Log.v("Debug | " + DateTime.getCurrentTime() + " -> \n\n", String.valueOf(data) + "\n\n");
+        logv("\n\n" + data + "\n\n");
     }
 
     public static ArrayList<View> getViewContent(View view, ConstraintLayout layout) {

@@ -37,6 +37,7 @@ dependencies {
     implementation 'com.jakewharton:butterknife:8.5.1'
     implementation 'com.jakewharton:butterknife-compiler:8.5.1'
     implementation project(path: ':androidtools')
+    implementation 'com.github.vbauer:yandex-translate-api:1.3.3'
 }
 
 allprojects {

@@ -14,7 +14,6 @@ abstract class DefaultRecyclerAdapter extends RecyclerView.Adapter {
     private Context context;
     private int size;
     private int layout;
-    private RecyclerView.LayoutManager layoutManager;
 
     DefaultRecyclerAdapter(Context context, int size, int layout) {
         this.context = context;

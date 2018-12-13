@@ -2,6 +2,9 @@ package com.mindf.utils.java;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+
+import com.mindf.utils.android.RecyclerListView;
 import com.mindf.utils.android.ViewTools;
 import java.util.ArrayList;
 

@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import butterknife.ButterKnife;
+import butterknife.Optional;
 
 public abstract class RecyclerListView {
 
