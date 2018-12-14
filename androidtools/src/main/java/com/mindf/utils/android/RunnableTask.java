@@ -1,6 +1,8 @@
 package com.mindf.utils.android;
 
 import android.app.Activity;
+import android.support.annotation.Nullable;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Timer;
@@ -13,8 +15,9 @@ public interface RunnableTask extends Runnable {
     boolean[] isRunning = {false};
     void run();
     void progress(); // user has to set the progress after condition is done
-    void end();
+    default void end() {}
 
+    //todo make a builder patter to avoid putting default value each time
     default void start(Activity activity, int refreshRateMilliseconds) {
         final Timer timer = new Timer();
         timer.schedule(new TimerTask() {

@@ -2,11 +2,7 @@ package com.mindf.utils.java;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-
-import com.mindf.utils.android.RecyclerListView;
-import com.mindf.utils.android.ViewTools;
-import java.util.ArrayList;
+import com.mindf.utils.android.Dialog;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -14,11 +10,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        final ArrayList<String> strings = new ArrayList<>();
-        strings.add("1");
-        strings.add("2");
-        strings.add("3");
-        strings.add("4");
-        ViewTools.logList(strings);
+        new Dialog() {
+            @Override
+            protected void onPositiveButton() {
+
+            }
+
+        }.createConfirmationDialog(this);
     }
 }
