@@ -2,6 +2,7 @@ package com.mindf.utils.java;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Toast;
 import com.mindf.utils.android.Dialog;
 
 public class MainActivity extends AppCompatActivity {
@@ -13,9 +14,8 @@ public class MainActivity extends AppCompatActivity {
         new Dialog() {
             @Override
             protected void onPositiveButton() {
-
+                Toast.makeText(MainActivity.this, "Yes", Toast.LENGTH_SHORT).show();
             }
-
-        }.createConfirmationDialog(this);
+        }.createConfirmationDialog(this, "Are you sure?", "title").show();
     }
 }

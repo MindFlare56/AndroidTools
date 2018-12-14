@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.ActivityOptionsCompat;
@@ -15,6 +16,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.transition.Explode;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -312,6 +314,17 @@ public class ViewTools {
         String log = Arrays.toString(map.keySet().toArray());
         logv(log);
         return log;
+    }
+
+    public static int getAttrColor(Context context, int res) {
+        TypedArray a = context.obtainStyledAttributes(new TypedValue().data, new int[] { res });
+        int color = a.getColor(0, 0);
+        a.recycle();
+        return color;
+    }
+
+    public static String getAttrColorString(Context context, int res) {
+        return String.format("#%06X", 0xFFFFFF & getAttrColor(context, res));
     }
 }
 
