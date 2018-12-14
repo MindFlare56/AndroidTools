@@ -25,24 +25,28 @@ public abstract class Dialog {
                 .setNegativeButton("No", createNegativeButtonListener());
     }
 
-    public void createConfirmationDialog(Activity activity, String confirmationMessage, String title, String positionName, String negativeName) {
-        new AlertDialog.Builder(activity)
+    public AlertDialog.Builder createConfirmationDialog(Activity activity, String confirmationMessage, String title, String positionName, String negativeName) {
+        return new CustomDialogBuilder(activity)
                 .setIcon(android.R.drawable.ic_dialog_alert)
+                .setIconColor(activity, R.attr.colorPrimary)
                 .setTitle(title)
+                .setTitleColor(activity, R.attr.colorPrimary)//todo refactor method cuz context already pass
                 .setMessage(confirmationMessage)
-                .setPositiveButton("Yes", createPositiveButtonListener())
-                .setNegativeButton("No", createNegativeButtonListener())
-                .show();
+                .setDividerColor(ViewTools.getAttrColorString(activity, R.attr.colorPrimary))
+                .setPositiveButton(positionName, createPositiveButtonListener())
+                .setNegativeButton(negativeName, createNegativeButtonListener());
     }
 
-    public void createConfirmationDialog(Activity activity, String confirmationMessage, String title, String positionName, String negativeName, int dialogIcon) {
-        new AlertDialog.Builder(activity)
+    public AlertDialog.Builder createConfirmationDialog(Activity activity, String confirmationMessage, String title, String positionName, String negativeName, int dialogIcon) {
+        return new CustomDialogBuilder(activity)
                 .setIcon(dialogIcon)
+                .setIconColor(activity, R.attr.colorPrimary)
                 .setTitle(title)
+                .setTitleColor(activity, R.attr.colorPrimary)//todo refactor method cuz context already pass
                 .setMessage(confirmationMessage)
+                .setDividerColor(ViewTools.getAttrColorString(activity, R.attr.colorPrimary))
                 .setPositiveButton(positionName, createPositiveButtonListener())
-                .setNegativeButton(negativeName, createNegativeButtonListener())
-                .show();
+                .setNegativeButton(negativeName, createNegativeButtonListener());
     }
 
     private DialogInterface.OnClickListener createPositiveButtonListener() {
