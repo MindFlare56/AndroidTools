@@ -88,6 +88,14 @@ public class DateTime {
             throw new IllegalArgumentException("Parse Exception");
         }
     }
+    
+    public static double getADateMilliSecondsValue(String dateString) {
+        try {
+            return new SimpleDateFormat("yyyy-MM-dd").parse(dateString).getTime();
+        } catch (ParseException e) {
+            throw new IllegalArgumentException("Parse Exception");
+        }
+    }
 
 /*
     public static String getAYearMilliSeconds(String yearString) {
