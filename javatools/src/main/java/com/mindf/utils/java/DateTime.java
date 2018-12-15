@@ -6,6 +6,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import lombok.SneakyThrows;
+
 public class DateTime {
 
     public final static String MONDAY = "monday";
@@ -22,6 +24,8 @@ public class DateTime {
     public final static String VENDREDI = "vendredi";
     public final static String SAMEDI = "samedi";
     public final static String DIMANCHE = "dimanche";
+
+    public final static String iso8601DateFormat = "yyyy-MM-dd";
 
     public final static double secondMilliseconds = 1000;
     public final static double minuteMilliseconds = 60000;
@@ -81,20 +85,14 @@ public class DateTime {
         return (double) new Date().getTime();
     }
 
+    @SneakyThrows
     public static String getADateMilliSeconds(String dateString) {
-        try {
-            return String.valueOf(new SimpleDateFormat("yyyy-MM-dd").parse(dateString).getTime());
-        } catch (ParseException e) {
-            throw new IllegalArgumentException("Parse Exception");
-        }
+        return String.valueOf(new SimpleDateFormat("yyyy-MM-dd").parse(dateString).getTime());
     }
 
+    @SneakyThrows
     public static double getADateMilliSecondsValue(String dateString) {
-        try {
-            return new SimpleDateFormat("yyyy-MM-dd").parse(dateString).getTime();
-        } catch (ParseException e) {
-            throw new IllegalArgumentException("Parse Exception");
-        }
+        return new SimpleDateFormat("yyyy-MM-dd").parse(dateString).getTime();
     }
 
 /*
@@ -166,15 +164,12 @@ public class DateTime {
         return milliSecondsInputDate == milliSecondsComparedDate;
     }
 
+    @SneakyThrows
     public static boolean isDateValid(String inputDate) {
-        try {
-            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            dateFormat.setLenient(false);
-            dateFormat.parse(inputDate);
-            return true;
-        } catch (ParseException e) {
-            throw new IllegalArgumentException("Parse Exception");
-        }
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        dateFormat.setLenient(false);
+        dateFormat.parse(inputDate);
+        return true;
     }
 
     public static boolean isAfterCurrentDate(String stringDate) {
@@ -280,13 +275,10 @@ public class DateTime {
         return differenceInMilliSeconds / secondMilliseconds;
     }
 
+    @SneakyThrows
     public static String getWeakDayName(final Locale LANGUAGE) {
-        try {
-            Date date = new SimpleDateFormat("yyyy-M-d").parse(getCurrentDate());
-            return new SimpleDateFormat("EEEE", LANGUAGE).format(date);
-        } catch (ParseException e) {
-            throw new IllegalArgumentException("Parse Exception");
-        }
+        Date date = new SimpleDateFormat("yyyy-M-d").parse(getCurrentDate());
+        return new SimpleDateFormat("EEEE", LANGUAGE).format(date);
     }
 
     public static String getYearMonthName(final Locale LANGUAGE) {
@@ -319,5 +311,10 @@ public class DateTime {
 
     static boolean isBirthDateValid(String birthDate) {
         return isDateValid(birthDate) && isBeforeCurrentDate(birthDate);
+    }
+
+    @SneakyThrows
+    public static Date stringDateToDate(String stringDate) {
+        return new SimpleDateFormat(iso8601DateFormat, Locale.ENGLISH).parse(stringDate);
     }
 }
