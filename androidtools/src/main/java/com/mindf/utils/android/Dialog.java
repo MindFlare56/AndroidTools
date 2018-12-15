@@ -7,7 +7,7 @@ import android.view.ContextThemeWrapper;
 
 public abstract class Dialog {
 
-    protected abstract void onPositiveButton();
+    protected void onPositiveButton() {}
     protected void onNegativeButton() {}
 
     //setTitleColor
