@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
 import com.mindf.utils.android.Dialog;
+import com.mindf.utils.android.ViewTools;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -11,11 +12,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        new Dialog() {
-            @Override
-            protected void onPositiveButton() {
-                Toast.makeText(MainActivity.this, "Yes", Toast.LENGTH_SHORT).show();
-            }
-        }.createConfirmationDialog(this, "Are you sure?", "title").show();
+        ViewTools.logv(DateTime.getADateMilliSecondsValue("2018-12-14"));
     }
 }
