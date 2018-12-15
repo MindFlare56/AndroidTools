@@ -23,13 +23,13 @@ public class DateTime {
     public final static String SAMEDI = "samedi";
     public final static String DIMANCHE = "dimanche";
 
-    private final static double secondMilliseconds = 1000;
-    private final static double minuteMilliseconds = 60000;
-    private final static double hourMilliseconds = 3.6e+6;
-    private final static double dayMilliseconds = 8.64e+7;
-    private final static double weekMilliseconds = 6.048e+8;
-    private final static double monthMilliseconds = 2.628e+9;
-    private final static double yearMilliseconds = 3.154e+10;
+    public final static double secondMilliseconds = 1000;
+    public final static double minuteMilliseconds = 60000;
+    public final static double hourMilliseconds = 3.6e+6;
+    public final static double dayMilliseconds = 8.64e+7;
+    public final static double weekMilliseconds = 6.048e+8;
+    public final static double monthMilliseconds = 2.628e+9;
+    public final static double yearMilliseconds = 3.154e+10;
 
     private final static String currentYear = getCurrentYear();
     private final static String currentMonth = getCurrentMonth();
