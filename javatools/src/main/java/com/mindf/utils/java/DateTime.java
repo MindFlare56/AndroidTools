@@ -94,14 +94,6 @@ public class DateTime {
     public static double getADateMilliSecondsValue(String dateString) {
         return new SimpleDateFormat("yyyy-MM-dd").parse(dateString).getTime();
     }
-    
-    public static double getADateMilliSecondsValue(String dateString) {
-        try {
-            return new SimpleDateFormat("yyyy-MM-dd").parse(dateString).getTime();
-        } catch (ParseException e) {
-            throw new IllegalArgumentException("Parse Exception");
-        }
-    }
 
 /*
     public static String getAYearMilliSeconds(String yearString) {
@@ -289,13 +281,10 @@ public class DateTime {
         return new SimpleDateFormat("EEEE", LANGUAGE).format(date);
     }
 
+    @SneakyThrows
     public static String getYearMonthName(final Locale LANGUAGE) {
-        try {
-            Date date = new SimpleDateFormat("yyyy-M-d").parse(getCurrentDate());
-            return new SimpleDateFormat("MMM", LANGUAGE).format(date);
-        } catch (ParseException e) {
-            throw new IllegalArgumentException("Parse Exception");
-        }
+        Date date = new SimpleDateFormat("yyyy-M-d").parse(getCurrentDate());
+        return new SimpleDateFormat("MMM", LANGUAGE).format(date);
     }
 
     public static int getAge(String birthDate) {      //must not be born in future
@@ -309,12 +298,9 @@ public class DateTime {
         return age;
     }
 
+    @SneakyThrows
     private static Date defineDate(SimpleDateFormat simpleDateFormat, String stringDate) {
-        try {
-            return simpleDateFormat.parse(stringDate);
-        } catch (ParseException ex) {
-            throw new IllegalArgumentException("Parse Exception");
-        }
+        return simpleDateFormat.parse(stringDate);
     }
 
     static boolean isBirthDateValid(String birthDate) {
