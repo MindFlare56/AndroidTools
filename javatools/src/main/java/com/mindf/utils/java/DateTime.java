@@ -5,6 +5,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import lombok.Getter;
+import lombok.Setter;
 import lombok.SneakyThrows;
 
 public class DateTime {
@@ -24,7 +26,18 @@ public class DateTime {
     public final static String SAMEDI = "samedi";
     public final static String DIMANCHE = "dimanche";
 
-    public final static String iso8601DateFormat = "yyyy-MM-dd";
+    public final static String ISO8601_DATE_FORMAT = "yyyy-MM-dd";
+    public final static String YEAR_FORMAT = "yyyy";
+    public final static String MONTH_FORMAT = "MM";
+    public final static String DAY_FORMAT = "dd";
+    public final static char ISO8601_DATE_SEPARATOR = '-';
+    public final static String ISO8601_TIME_FORMAT = "HH:mm:ss";
+    public final static String HOUR_FORMAT = "HH";
+    public final static String MINUTE_FORMAT = "mm";
+    public final static String SECONDS_FORMAT = "ss";
+    public final static char ISO8601_TIME_SEPARATOR = ':';
+    public final static String WEEK_DAY_FORMAT = "EEEE";
+    public final static String YEAR_MONTH_FORMAT = "MMM";
 
     public final static double secondMilliseconds = 1000;
     public final static double minuteMilliseconds = 60000;
@@ -38,50 +51,43 @@ public class DateTime {
     private final static String currentMonth = getCurrentMonth();
     private final static String currentDay = getCurrentDay();
 
+    @Getter @Setter private static Locale locale = Locale.ENGLISH;
+
     //format == iso8601
+    public DateTime(Locale locale) {
+        DateTime.locale = locale;
+    }
 
     public static String getCurrentDateTime() {
         return getCurrentDate() + " " + getCurrentTime();
     }
 
-    public static String getCurrentStringDate() {
-        return new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).format(new Date());
+    public static SimpleDateFormat getSimpleDateYearsFormat() {
+        return new SimpleDateFormat(YEAR_FORMAT, locale);
     }
 
-    public static String getCurrentYear() {
-        return new SimpleDateFormat("yyyy", Locale.ENGLISH).format(new Date());
+    public static SimpleDateFormat getSimpleDateMonthsFormat() {
+        return new SimpleDateFormat(MONTH_FORMAT, locale);
     }
 
-    public static String getCurrentMonth() {
-        return new SimpleDateFormat("MM", Locale.ENGLISH).format(new Date());
+    public static SimpleDateFormat getSimpleDateDaysFormat() {
+        return new SimpleDateFormat(DAY_FORMAT, locale);
     }
 
-    public static String getCurrentDay() {
-        return new SimpleDateFormat("dd", Locale.ENGLISH).format(new Date());
+    public static SimpleDateFormat getSimpleDateTimeFormat() {
+        return new SimpleDateFormat(ISO8601_TIME_FORMAT, locale);
     }
 
-    public static String getCurrentTime() {
-        return new SimpleDateFormat("HH:mm:ss", Locale.ENGLISH).format(new Date());
+    public static SimpleDateFormat getSimpleDateHoursFormat() {
+        return new SimpleDateFormat(HOUR_FORMAT, locale);
     }
 
-    public static String getCurrentHours() {
-        return new SimpleDateFormat("HH", Locale.ENGLISH).format(new Date());
+    public static SimpleDateFormat getSimpleDateMinutesFormat() {
+        return new SimpleDateFormat(MINUTE_FORMAT, locale);
     }
 
-    public static String getCurrentMinute() {
-        return new SimpleDateFormat("mm", Locale.ENGLISH).format(new Date());
-    }
-
-    public static String getCurrentSeconds() {
-        return new SimpleDateFormat("ss", Locale.ENGLISH).format(new Date());
-    }
-
-    public static String getCurrentMilliSeconds() {
-        return String.valueOf(new Date().getTime());
-    }
-
-    public static double getCurrentMilliSecondsDoubleValue() {
-        return (double) new Date().getTime();
+    public static SimpleDateFormat getSimpleDateSecondsFormat() {
+        return new SimpleDateFormat(SECONDS_FORMAT, locale);
     }
 
     public static long getCurrentMilliSecondsValue() {
@@ -90,17 +96,17 @@ public class DateTime {
 
     @SneakyThrows
     public static String getADateMilliSeconds(String dateString) {
-        return String.valueOf(new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).parse(dateString).getTime());
+        return String.valueOf(new SimpleDateFormat(ISO8601_DATE_FORMAT, locale).parse(dateString).getTime());
     }
 
     @SneakyThrows
     public static double getADateMilliSecondsValue(String dateString) {
-        return new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).parse(dateString).getTime();
+        return new SimpleDateFormat(ISO8601_DATE_FORMAT, locale).parse(dateString).getTime();
     }
 
     public static String changeDateFormatToIso8601(String stringDate, final String OLD_FORMAT) {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(OLD_FORMAT, Locale.ENGLISH);
-        simpleDateFormat.applyPattern("yyyy-MM-dd");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(OLD_FORMAT, locale);
+        simpleDateFormat.applyPattern(ISO8601_DATE_FORMAT);
         return simpleDateFormat.format(defineDate(simpleDateFormat, stringDate));
     }
 
@@ -155,7 +161,7 @@ public class DateTime {
 
     @SneakyThrows
     public static boolean isDateValid(String inputDate) {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+        DateFormat dateFormat = new SimpleDateFormat(ISO8601_DATE_FORMAT, Locale.ENGLISH);
         dateFormat.setLenient(false);
         dateFormat.parse(inputDate);
         return true;
@@ -265,30 +271,18 @@ public class DateTime {
     }
 
     @SneakyThrows
-    public static String getWeakDayName(final Locale LANGUAGE) {
-        Date date = getSimpleDateFormat().parse(getCurrentStringDate());
-        return new SimpleDateFormat("EEEE", LANGUAGE).format(date);
-    }
-
-    @SneakyThrows
-    public static String getYearMonthName(final Locale LANGUAGE) {
-        Date date = getSimpleDateFormat().parse(getCurrentStringDate());
-        return new SimpleDateFormat("MMM", LANGUAGE).format(date);
-    }
-
-    @SneakyThrows
     public static String getWeakDayName() {
         Date date = getSimpleDateFormat().parse(getCurrentStringDate());
-        return new SimpleDateFormat("EEEE", Locale.ENGLISH).format(date);
+        return new SimpleDateFormat(WEEK_DAY_FORMAT, Locale.ENGLISH).format(date);
     }
 
     @SneakyThrows
     public static String getYearMonthName() {
         Date date = getSimpleDateFormat().parse(getCurrentStringDate());
-        return new SimpleDateFormat("MMM", Locale.ENGLISH).format(date);
+        return new SimpleDateFormat(YEAR_MONTH_FORMAT, Locale.ENGLISH).format(date);
     }
 
-    public static int getAge(String birthDate) {      //must not be born in future
+    public static int getAge(String birthDate) { //must not be born in future
         String birthYear = extractYear(birthDate);
         String birthMonth = extractMonth(birthDate);
         String birthDay = extractDay(birthDate);
@@ -299,13 +293,30 @@ public class DateTime {
         return age;
     }
 
-    @SneakyThrows
-    private static Date defineDate(SimpleDateFormat simpleDateFormat, String stringDate) {
-        return simpleDateFormat.parse(stringDate);
-    }
-
     static boolean isBirthDateValid(String birthDate) {
         return isDateValid(birthDate) && isBeforeCurrentDate(birthDate);
+    }
+
+    public static SimpleDateFormat getSimpleDateFormat() {
+        return new SimpleDateFormat(ISO8601_DATE_FORMAT, locale);
+    }
+
+    /** Deprecated **/
+    public static String dateToStringDate(Date date) {
+        long dateValue = date.getDate();
+        return milliSecondsToStringDate(dateValue);
+    }
+
+    public static String milliSecondsToStringDate(long milliseconds) {
+        return getSimpleDateFormat().format(new Date(milliseconds));
+    }
+
+    public static double getCurrentMilliSecondsDoubleValue() {
+        return (double) new Date().getTime();
+    }
+
+    public static Date getCurrentDate() {
+        return stringDateToDate(getCurrentStringDate());
     }
 
     @SneakyThrows
@@ -313,22 +324,48 @@ public class DateTime {
         return getSimpleDateFormat().parse(stringDate);
     }
 
-    public static String milliSecondsToStringDate(long milliseconds) {
-        return getSimpleDateFormat().format(new Date(milliseconds));
+    @SneakyThrows
+    private static Date defineDate(SimpleDateFormat simpleDateFormat, String stringDate) {
+        return simpleDateFormat.parse(stringDate);
     }
 
-
-
-    public static SimpleDateFormat getSimpleDateFormat() {
-        return new SimpleDateFormat(iso8601DateFormat, Locale.ENGLISH);
+    public static String getCurrentStringDate() {
+        return getSimpleDateFormat().format(new Date());
     }
 
-    public static Date getCurrentDate() {
-        return stringDateToDate(getCurrentStringDate());
+    public static String getCurrentYear() {
+        if (locale == null) locale = Locale.ENGLISH;
+        return getSimpleDateYearsFormat().format(new Date());
     }
 
-    public static String dateToStringDate(Date date) {
-        long dateValue = date.getDate();
-        return milliSecondsToStringDate(dateValue);
+    public static String getCurrentMonth() {
+        if (locale == null) locale = Locale.ENGLISH;
+        return getSimpleDateMonthsFormat().format(new Date());
     }
+
+    public static String getCurrentDay() {
+        if (locale == null) locale = Locale.ENGLISH;
+        return getSimpleDateDaysFormat().format(new Date());
+    }
+
+    public static String getCurrentTime() {
+        return getSimpleDateTimeFormat().format(new Date());
+    }
+
+    public static String getCurrentHours() {
+        return getSimpleDateHoursFormat().format(new Date());
+    }
+
+    public static String getCurrentMinute() {
+        return getSimpleDateMinutesFormat().format(new Date());
+    }
+
+    public static String getCurrentSeconds() {
+        return getSimpleDateSecondsFormat().format(new Date());
+    }
+
+    public static String getCurrentMilliSeconds() {
+        return String.valueOf(new Date().getTime());
+    }
+    /***/
 }
