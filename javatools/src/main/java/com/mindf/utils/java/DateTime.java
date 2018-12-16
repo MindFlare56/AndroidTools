@@ -1,14 +1,7 @@
 package com.mindf.utils.java;
 
-import android.os.Build;
-import android.support.annotation.RequiresApi;
-
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -51,7 +44,7 @@ public class DateTime {
         return getCurrentDate() + " " + getCurrentTime();
     }
 
-    public static String getCurrentDate() {
+    public static String getCurrentStringDate() {
         return new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).format(new Date());
     }
 
@@ -104,20 +97,6 @@ public class DateTime {
     public static double getADateMilliSecondsValue(String dateString) {
         return new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).parse(dateString).getTime();
     }
-
-/*
-    public static String getAYearMilliSeconds(String yearString) {
-        //todo
-    }
-
-    public static String getAMonthMilliSeconds(String monthString) {
-        //todo
-    }
-
-    public static String getADayMilliSeconds(String dayString) {
-        //todo
-    }
-*/
 
     public static String changeDateFormatToIso8601(String stringDate, final String OLD_FORMAT) {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(OLD_FORMAT, Locale.ENGLISH);
@@ -183,29 +162,29 @@ public class DateTime {
     }
 
     public static boolean isAfterCurrentDate(String stringDate) {
-        double milliSecondsCurrentDate = Double.parseDouble(getADateMilliSeconds(getCurrentDate()));
+        double milliSecondsCurrentDate = Double.parseDouble(getADateMilliSeconds(getCurrentStringDate()));
         double milliSecondsStringDate = Double.parseDouble(getADateMilliSeconds(stringDate));
         return milliSecondsStringDate > milliSecondsCurrentDate;
     }
 
     public static boolean isAfterCurrentDate(long millisecondsDate) {
-        double milliSecondsCurrentDate = Double.parseDouble(getADateMilliSeconds(getCurrentDate()));
+        double milliSecondsCurrentDate = Double.parseDouble(getADateMilliSeconds(getCurrentStringDate()));
         return millisecondsDate > milliSecondsCurrentDate;
     }
 
     public static boolean isBeforeCurrentDate(String stringDate) {
-        double milliSecondsCurrentDate = Double.parseDouble(getADateMilliSeconds(getCurrentDate()));
+        double milliSecondsCurrentDate = Double.parseDouble(getADateMilliSeconds(getCurrentStringDate()));
         double milliSecondsStringDate = Double.parseDouble(getADateMilliSeconds(stringDate));
         return milliSecondsStringDate < milliSecondsCurrentDate;
     }
 
     public static boolean isBeforeCurrentDate(long millisecondsDate) {
-        double milliSecondsCurrentDate = Double.parseDouble(getADateMilliSeconds(getCurrentDate()));
+        double milliSecondsCurrentDate = Double.parseDouble(getADateMilliSeconds(getCurrentStringDate()));
         return millisecondsDate < milliSecondsCurrentDate;
     }
 
     public static boolean isEqualsCurrentDate(String stringDate) {
-        double milliSecondsCurrentDate = Double.parseDouble(getADateMilliSeconds(getCurrentDate()));
+        double milliSecondsCurrentDate = Double.parseDouble(getADateMilliSeconds(getCurrentStringDate()));
         double milliSecondsStringDate = Double.parseDouble(getADateMilliSeconds(stringDate));
         return milliSecondsStringDate == milliSecondsCurrentDate;
     }
@@ -215,24 +194,24 @@ public class DateTime {
     }
 
     public static boolean isAfterOrEqualsCurrentDate(String stringDate) {
-        double milliSecondsCurrentDate = Double.parseDouble(getADateMilliSeconds(getCurrentDate()));
+        double milliSecondsCurrentDate = Double.parseDouble(getADateMilliSeconds(getCurrentStringDate()));
         double milliSecondsStringDate = Double.parseDouble(getADateMilliSeconds(stringDate));
         return milliSecondsStringDate >= milliSecondsCurrentDate;
     }
 
     public static boolean isAfterOrEqualsCurrentDate(long millisecondsDate) {
-        double milliSecondsCurrentDate = Double.parseDouble(getADateMilliSeconds(getCurrentDate()));
+        double milliSecondsCurrentDate = Double.parseDouble(getADateMilliSeconds(getCurrentStringDate()));
         return millisecondsDate >= milliSecondsCurrentDate;
     }
 
     public static boolean isBeforeOrEqualsCurrentDate(String stringDate) {
-        double milliSecondsCurrentDate = Double.parseDouble(getADateMilliSeconds(getCurrentDate()));
+        double milliSecondsCurrentDate = Double.parseDouble(getADateMilliSeconds(getCurrentStringDate()));
         double milliSecondsStringDate = Double.parseDouble(getADateMilliSeconds(stringDate));
         return milliSecondsStringDate <= milliSecondsCurrentDate;
     }
 
     public static boolean isBeforeOrEqualsCurrentDate(long millisecondsDate) {
-        double milliSecondsCurrentDate = Double.parseDouble(getADateMilliSeconds(getCurrentDate()));
+        double milliSecondsCurrentDate = Double.parseDouble(getADateMilliSeconds(getCurrentStringDate()));
         return millisecondsDate <= milliSecondsCurrentDate;
     }
 
@@ -287,14 +266,26 @@ public class DateTime {
 
     @SneakyThrows
     public static String getWeakDayName(final Locale LANGUAGE) {
-        Date date = new SimpleDateFormat("yyyy-M-d", Locale.ENGLISH).parse(getCurrentDate());
+        Date date = getSimpleDateFormat().parse(getCurrentStringDate());
         return new SimpleDateFormat("EEEE", LANGUAGE).format(date);
     }
 
     @SneakyThrows
     public static String getYearMonthName(final Locale LANGUAGE) {
-        Date date = new SimpleDateFormat("yyyy-M-d", Locale.ENGLISH).parse(getCurrentDate());
+        Date date = getSimpleDateFormat().parse(getCurrentStringDate());
         return new SimpleDateFormat("MMM", LANGUAGE).format(date);
+    }
+
+    @SneakyThrows
+    public static String getWeakDayName() {
+        Date date = getSimpleDateFormat().parse(getCurrentStringDate());
+        return new SimpleDateFormat("EEEE", Locale.ENGLISH).format(date);
+    }
+
+    @SneakyThrows
+    public static String getYearMonthName() {
+        Date date = getSimpleDateFormat().parse(getCurrentStringDate());
+        return new SimpleDateFormat("MMM", Locale.ENGLISH).format(date);
     }
 
     public static int getAge(String birthDate) {      //must not be born in future
@@ -326,26 +317,18 @@ public class DateTime {
         return getSimpleDateFormat().format(new Date(milliseconds));
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public static String CalendarToStringDate(Calendar calendarDate) {
-        LocalDateTime localDateTime = LocalDateTime.now();
-        DateTimeFormatter dateTimeFormatter = getDateTimeFormatter();
-        return dateTimeFormatter.format(localDateTime);
-    }
 
-    @SneakyThrows
-    public static Calendar StringDateToCalendar(String stringDate) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(getSimpleDateFormat().parse(stringDate));
-        return calendar;
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public static DateTimeFormatter getDateTimeFormatter() {
-        return DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.ENGLISH);
-    }
 
     public static SimpleDateFormat getSimpleDateFormat() {
         return new SimpleDateFormat(iso8601DateFormat, Locale.ENGLISH);
+    }
+
+    public static Date getCurrentDate() {
+        return stringDateToDate(getCurrentStringDate());
+    }
+
+    public static String dateToStringDate(Date date) {
+        long dateValue = date.getDate();
+        return milliSecondsToStringDate(dateValue);
     }
 }
