@@ -1,8 +1,14 @@
 package com.mindf.utils.java;
 
+import android.os.Build;
+import android.support.annotation.RequiresApi;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -313,11 +319,33 @@ public class DateTime {
 
     @SneakyThrows
     public static Date stringDateToDate(String stringDate) {
-        return new SimpleDateFormat(iso8601DateFormat, Locale.ENGLISH).parse(stringDate);
+        return getSimpleDateFormat().parse(stringDate);
     }
 
     public static String milliSecondsToStringDate(long milliseconds) {
-        SimpleDateFormat formatter = new SimpleDateFormat(iso8601DateFormat, Locale.ENGLISH);
-        return formatter.format(new Date(milliseconds));
+        return getSimpleDateFormat().format(new Date(milliseconds));
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public static String CalendarToStringDate(Calendar calendarDate) {
+        LocalDateTime localDateTime = LocalDateTime.now();
+        DateTimeFormatter dateTimeFormatter = getDateTimeFormatter();
+        return dateTimeFormatter.format(localDateTime);
+    }
+
+    @SneakyThrows
+    public static Calendar StringDateToCalendar(String stringDate) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(getSimpleDateFormat().parse(stringDate));
+        return calendar;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public static DateTimeFormatter getDateTimeFormatter() {
+        return DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.ENGLISH);
+    }
+
+    public static SimpleDateFormat getSimpleDateFormat() {
+        return new SimpleDateFormat(iso8601DateFormat, Locale.ENGLISH);
     }
 }
