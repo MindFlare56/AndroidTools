@@ -1,5 +1,7 @@
 package com.mindf.utils.java;
 
+import android.util.Pair;
+
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -9,28 +11,26 @@ import lombok.Setter;
 
 public class LinkedMap<Key, Value> extends LinkedHashMap<Key, Value> implements Map<Key, Value> {
 
-    //todo check to refactor object return to <T> T
-
     @Getter @Setter private Value defaultValue = null;
     private LinkedHashMap<Key, Value> linkedHashMap = new LinkedHashMap<>();
-    private List<Link> links;
+    private List<Link> list;
 
     public LinkedMap() {
-        links = new ArrayList<>();
+        list = new ArrayList<>();
     }
 
-    public LinkedMap(List<Link> links) {
-        this.links = new ArrayList<>();
-        addAll(links);
+    public LinkedMap(List<Link> list) {
+        this.list = new ArrayList<>();
+        addAll(list);
     }
 
     public LinkedMap(LinkedMap<Key, Value> linkedMap) {
         linkedHashMap = linkedMap;
-        links = new ArrayList<>(((LinkedMap<Object, Object>) linkedHashMap).getLinks());
+        list = new ArrayList<>(((LinkedMap<Object, Object>) linkedHashMap).getList());
     }
 
     public LinkedMap(List<Key> keys, List<Value> values) {
-        links = new ArrayList<>();
+        list = new ArrayList<>();
         putAll(keys, values);
     }
 
@@ -40,13 +40,13 @@ public class LinkedMap<Key, Value> extends LinkedHashMap<Key, Value> implements 
 
     public Value put(Key key, Value value) {
         linkedHashMap.put(key, value);
-        links.add(new Link<>(key, value));
+        list.add(new Link<>(key, value));
         return value;
     }
 
     public List<Link> add(Link link) {
         put((Key) link.getKey(), (Value) link.getValue());
-        return links;
+        return list;
     }
 
     public Value putIfAbsent(Key key, Value value) {
@@ -61,7 +61,7 @@ public class LinkedMap<Key, Value> extends LinkedHashMap<Key, Value> implements 
         if (!contain((Key) link.getKey())) {
             add(link);
         }
-        return links;
+        return list;
     }
 
     public List<Value> putAll(List<Key> keys, List<Value> values) {
@@ -71,7 +71,7 @@ public class LinkedMap<Key, Value> extends LinkedHashMap<Key, Value> implements 
                 Value value = values.get(i);
                 linkedHashMap.put(key, value);
                 values.add(values.get(i));
-                links.add(makeLink(key, value));
+                list.add(makeLink(key, value));
             }
             return values;
         } else {
@@ -79,8 +79,8 @@ public class LinkedMap<Key, Value> extends LinkedHashMap<Key, Value> implements 
         }
     }
 
-    public void addAll(List<Link> links) {
-        for (Link link : links) {
+    public void addAll(List<Link> list) {
+        for (Link link : list) {
             add(link);
         }
     }
@@ -90,19 +90,19 @@ public class LinkedMap<Key, Value> extends LinkedHashMap<Key, Value> implements 
         LinkedMap tempMap = new LinkedMap((LinkedMap) linkedMap);
         tempMap.keySet().removeAll(linkedHashMap.keySet());
         linkedHashMap.putAll(tempMap);
-        links = Tools.mapToLinkList(linkedHashMap);
+        list = Tools.mapToLinkList(linkedHashMap);
     }
 
     public boolean contains(LinkedMap linkedMap) {
-        return contains(linkedMap.getLinks());
+        return contains(linkedMap.getList());
     }
 
     public boolean contain(Key key) {
         return linkedHashMap.get(key) != null;
     }
 
-    public boolean contains(List<Link> links) {
-        for (Link link : links) {
+    public boolean contains(List<Link> list) {
+        for (Link link : list) {
            if (!contain(link)) {
                return false;
            }
@@ -111,7 +111,7 @@ public class LinkedMap<Key, Value> extends LinkedHashMap<Key, Value> implements 
     }
 
     public boolean contain(Link link) {
-        for (Link currentLink : links) {
+        for (Link currentLink : list) {
             if (currentLink.getValue() == link.getValue() && currentLink.getKey() == link.getKey()) {
                 return true;
             }
@@ -119,8 +119,8 @@ public class LinkedMap<Key, Value> extends LinkedHashMap<Key, Value> implements 
         return false;
     }
 
-    public boolean equals(List<Link> links) {
-        return this.links.equals(links);
+    public boolean equals(List<Link> list) {
+        return this.list.equals(list);
     }
 
     public Value get(String key) {
@@ -128,15 +128,15 @@ public class LinkedMap<Key, Value> extends LinkedHashMap<Key, Value> implements 
     }
 
     public Value get(int index) {
-        return (Value) links.get(index).getValue();
+        return (Value) list.get(index).getValue();
     }
 
     public Key getKey(int index) {
-        return (Key) links.get(index).getKey();
+        return (Key) list.get(index).getKey();
     }
 
     public Link gets(int index) {
-        return links.get(index);
+        return list.get(index);
     }
 
     public Value getOrDefaultValue(Key key) {
@@ -145,88 +145,89 @@ public class LinkedMap<Key, Value> extends LinkedHashMap<Key, Value> implements 
 
     public List<Value> getValues() {
         List<Value> values = new ArrayList<>();
-        for (int i = 0; i < this.links.size(); i++) {
-            values.add((Value)this.links.get(i).getValue());
+        for (int i = 0; i < this.list.size(); i++) {
+            values.add((Value)this.list.get(i).getValue());
         }
         return values;
     }
 
     public List<Key> getKeys() {
         List<Key> keys = new ArrayList<>();
-        for (int i = 0; i < this.links.size(); i++) {
-            keys.add((Key) this.links.get(i).getKey());
+        for (int i = 0; i < this.list.size(); i++) {
+            keys.add((Key) this.list.get(i).getKey());
         }
         return keys;
     }
 
     public void replace(Link link) {
         int index = getIndex(link.getKey());
-        links.remove(index);
-        links.add(index, link);
+        list.remove(index);
+        list.add(index, link);
         linkedHashMap.replace((Key) link.getKey(), (Value) link.getValue());
     }
 
     public Value replace(Key key, Value newValue) {
         int index = getIndex(key);
-        links.remove(index);
-        links.add(index, new Link(key, newValue));
+        list.remove(index);
+        list.add(index, new Link(key, newValue));
         linkedHashMap.replace(key, newValue);
         return newValue;
     }
 
     public int getIndex(Object key) {
-        for (int i = 0; i < links.size(); i++) {
-            if (links.get(i).getKey().equals(key)) {
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getKey().equals(key)) {
                 return i;
             }
         }
         return -1;
     }
 
-    public List<Link> getLinks() {
-        return new ArrayList<>(this.links);
+    public List<Link> getList() {
+        return new ArrayList<>(this.list);
     }
 
     public Value remove(Object key) {
-        links.remove(getIndex(key));
+        list.remove(getIndex(key));
         return linkedHashMap.remove(key);
     }
 
     public void remove(int index) {
-        Object key = links.remove(index).getKey();
+        Object key = list.remove(index).getKey();
         linkedHashMap.remove(key);
     }
 
     public void removeAll() {
-        links = new ArrayList<>();
+        list = new ArrayList<>();
         linkedHashMap.clear();
     }
 
     public boolean removeAll(LinkedMap linkedMap) {
         if (contains(linkedMap)) {
-            List<Link> links = linkedMap.getLinks();
-            for (int i = 0; i < links.size(); i++) {
-                remove(links.get(i).getKey());
+            List<Link> list = linkedMap.getList();
+            for (int i = 0; i < list.size(); i++) {
+                remove(list.get(i).getKey());
             }
             return true;
         }
         return false;
     }
 
-    public boolean removeAll(List<Link> links) {
-        if (contains(links)) {
-            for (int i = 0; i < links.size(); i++) {
-                remove(links.get(i).getKey());
+    public boolean removeAll(List<Link> list) {
+        if (contains(list)) {
+            for (int i = 0; i < list.size(); i++) {
+                remove(list.get(i).getKey());
             }
             return true;
         }
         return false;
     }
 
-    public List<Link> buildComposedKeys(Object first, List<Object> seconds) {
-        List<Link> keys = new ArrayList<>();
+    public <T, T2> List<Pair<T, T2>> buildComposedKeys(Object first, List<?> seconds) {
+        //first must not to the same as second
+        List<Pair<T, T2>> keys = new ArrayList<>();
         for (Object second : seconds) {
-            keys.add(new Link(first, second));
+            keys.add(new Pair(first, second));
         }
         return keys;
     }
