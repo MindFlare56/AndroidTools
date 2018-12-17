@@ -9,6 +9,8 @@ import lombok.Setter;
 
 public class LinkedMap<Key, Value> extends LinkedHashMap<Key, Value> implements Map<Key, Value> {
 
+    //todo check to refactor object return to <T> T
+
     @Getter @Setter private Value defaultValue = null;
     private LinkedHashMap<Key, Value> linkedHashMap = new LinkedHashMap<>();
     private List<Link> links;
@@ -219,5 +221,13 @@ public class LinkedMap<Key, Value> extends LinkedHashMap<Key, Value> implements 
             return true;
         }
         return false;
+    }
+
+    public List<Link> buildComposedKeys(Object first, List<Object> seconds) {
+        List<Link> keys = new ArrayList<>();
+        for (Object second : seconds) {
+            keys.add(new Link(first, second));
+        }
+        return keys;
     }
 }
