@@ -100,7 +100,12 @@ public class DateTime {
     }
 
     @SneakyThrows
-    public static double getADateMilliSecondsValue(String dateString) {
+    public static long getStringDateMilliSecondsLong(String dateString) {
+        return new SimpleDateFormat(ISO8601_DATE_FORMAT, locale).parse(dateString).getTime();
+    }
+
+    @SneakyThrows
+    public static double getStringDateMilliSeconds(String dateString) {
         return new SimpleDateFormat(ISO8601_DATE_FORMAT, locale).parse(dateString).getTime();
     }
 
@@ -240,9 +245,14 @@ public class DateTime {
         return milliSecondsInputDate - milliSecondsComparedDate;
     }
 
-    public static double getDayBetweenTwoDates(String inputDate, String comparedDate) {
+    public static double getDoubleDayBetweenTwoDates(String inputDate, String comparedDate) {
         double differenceInMilliSeconds = getMilliSecondsBetweenTwoDates(inputDate, comparedDate);
         return differenceInMilliSeconds / dayMilliseconds;
+    }
+
+    public static int getDayBetweenTwoDates(String inputDate, String comparedDate) {
+        double differenceInMilliSeconds = getMilliSecondsBetweenTwoDates(inputDate, comparedDate);
+        return (int) (differenceInMilliSeconds / dayMilliseconds);
     }
 
     public static double getMonthBetweenTwoDates(String inputDate, String comparedDate) {
