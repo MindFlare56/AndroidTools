@@ -15,6 +15,10 @@ public class LinkedMap<Key, Value> extends LinkedHashMap<Key, Value> implements 
     private LinkedHashMap<Key, Value> linkedHashMap = new LinkedHashMap<>();
     private List<Link> list;
 
+    public int size() {
+        return list.size();
+    }
+
     public LinkedMap() {
         list = new ArrayList<>();
     }

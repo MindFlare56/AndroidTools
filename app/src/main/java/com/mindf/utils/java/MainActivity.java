@@ -28,6 +28,9 @@ public class MainActivity extends AppCompatActivity {
         ViewTools.logv(map.getKeys().get(0).second);
         ViewTools.logv(map.getKeys().get(1).first);
         ViewTools.logv(map.getKeys().get(1).second);
+        int test = map.size();
+        ViewTools.logv(test);
+        ViewTools.logv("asd");
     }
 
     public class Bob {
