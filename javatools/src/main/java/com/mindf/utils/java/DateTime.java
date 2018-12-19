@@ -311,6 +311,14 @@ public class DateTime {
         return new SimpleDateFormat(ISO8601_DATE_FORMAT, locale);
     }
 
+    public static String getYesterday() {
+        return milliSecondsToStringDate((getCurrentMilliSecondsValue() - dayMilliseconds));
+    }
+
+    public static String getTomorrow() {
+        return milliSecondsToStringDate((getCurrentMilliSecondsValue() + dayMilliseconds));
+    }
+
     /** Deprecated **/
     public static String dateToStringDate(Date date) {
         long dateValue = date.getDate();
@@ -319,6 +327,10 @@ public class DateTime {
 
     public static String milliSecondsToStringDate(long milliseconds) {
         return getSimpleDateFormat().format(new Date(milliseconds));
+    }
+
+    public static String milliSecondsToStringDate(double milliseconds) {
+        return getSimpleDateFormat().format(new Date((long) milliseconds));
     }
 
     public static double getCurrentMilliSecondsDoubleValue() {
