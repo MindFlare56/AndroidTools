@@ -12,8 +12,8 @@ import lombok.Setter;
 public class LinkedMap<Key, Value> extends LinkedHashMap<Key, Value> implements Map<Key, Value> {
 
     @Getter @Setter private Value defaultValue = null;
-    private LinkedHashMap<Key, Value> linkedHashMap = new LinkedHashMap<>();
-    private List<Link> list;
+    @Getter private LinkedHashMap<Key, Value> linkedHashMap = new LinkedHashMap<>();
+    @Getter private List<Link> list;
 
     public int size() {
         return list.size();
@@ -187,10 +187,6 @@ public class LinkedMap<Key, Value> extends LinkedHashMap<Key, Value> implements 
         return -1;
     }
 
-    public List<Link> getList() {
-        return new ArrayList<>(this.list);
-    }
-
     public Value remove(Object key) {
         list.remove(getIndex(key));
         return linkedHashMap.remove(key);
@@ -227,7 +223,7 @@ public class LinkedMap<Key, Value> extends LinkedHashMap<Key, Value> implements 
         return false;
     }
 
-    public <T, T2> List<Pair<T, T2>> buildComposedKeys(Object first, List<?> seconds) {
+    private <T, T2> List<Pair<T, T2>> buildComposedKeys(Object first, List<?> seconds) {
         //first must not to the same as second
         List<Pair<T, T2>> keys = new ArrayList<>();
         for (Object second : seconds) {

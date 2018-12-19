@@ -2,13 +2,11 @@ package com.mindf.utils.android;
 
 import android.os.Build;
 import android.support.annotation.RequiresApi;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import lombok.SneakyThrows;
-
 import static com.mindf.utils.java.DateTime.dateToStringDate;
 import static com.mindf.utils.java.DateTime.getSimpleDateFormat;
 import static com.mindf.utils.java.DateTime.milliSecondsToStringDate;
@@ -23,11 +21,9 @@ public class DateTime {
         return DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.ENGLISH);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     public static String calendarToStringDate(Calendar calendarDate) {
-        LocalDateTime localDateTime = LocalDateTime.now();
-        DateTimeFormatter dateTimeFormatter = getDateTimeFormatter();
-        return dateTimeFormatter.format(localDateTime);
+        long calendarMilliSeconds = calendarDate.getTimeInMillis();
+        return milliSecondsToStringDate(calendarMilliSeconds);
     }
 
     @SneakyThrows
