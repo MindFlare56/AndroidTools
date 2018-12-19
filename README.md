@@ -11,7 +11,14 @@ Add this line + the current version to your app.gradle:<br>
 implementation 'com.github.MindFlare56:Tools:Tag'
 
 Visit the below link to get the current version and the installation explanation<br/>
-https://jitpack.io/#MindFlare56/Tools
+https://jitpack.io/#MindFlare56/Tools<br/>
+<br/>
+Also require these tools (it make it MUCH ezier for every1): <br/>
+annotationProcessor "com.jakewharton:butterknife:8.5.1"
+annotationProcessor "com.jakewharton:butterknife-compiler:8.5.1"
+annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
+annotationProcessor "org.projectlombok:lombok:1.16.18"
+compileOnly "javax.annotation:jsr250-api:1.0"
 # ------------------------------------------------
 # RunnableTask usage example
 ```java
@@ -117,3 +124,17 @@ listView.setAdapter(new DefaultAdapter(context, list.size(), R.layout.layout) {
     }
 });
 ```
+# ---------------------------
+# Project dependencies:
+    compileOnly "javax.annotation:jsr250-api:1.0"
+    annotationProcessor "com.jakewharton:butterknife:8.5.1"
+    annotationProcessor "com.jakewharton:butterknife-compiler:8.5.1"
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
+    annotationProcessor "org.projectlombok:lombok:1.16.18"
+    implementation 'org.jetbrains:annotations:15.0'
+    implementation 'com.github.bumptech.glide:glide:4.8.0'
+    implementation 'com.android.support:recyclerview-v7:28.0.0'
+    implementation 'com.jakewharton:butterknife:8.5.1'
+    implementation 'com.jakewharton:butterknife-compiler:8.5.1'
+    implementation 'com.github.psinetron:slycalendarview:0.0.7'         
+    implementation 'org.projectlombok:lombok:1.16.18'
