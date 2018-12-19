@@ -133,7 +133,6 @@ listView.setAdapter(new DefaultAdapter(context, list.size(), R.layout.layout) {
     annotationProcessor "org.projectlombok:lombok:1.16.18"
     implementation 'org.jetbrains:annotations:15.0'
     implementation 'com.github.bumptech.glide:glide:4.8.0'
-    implementation 'com.android.support:recyclerview-v7:28.0.0'
     implementation 'com.jakewharton:butterknife:8.5.1'
     implementation 'com.jakewharton:butterknife-compiler:8.5.1'
     implementation 'com.github.psinetron:slycalendarview:0.0.7'         
