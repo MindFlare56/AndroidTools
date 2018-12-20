@@ -2,8 +2,9 @@
 # Tools
 
 Tools to make your life easier in java and android
-- Java: DataTime
-- Android: ViewTools, RunnableTask, WebImage, DefaultAdapter
+- Java: DataTime, LinkedMap, Tools...
+- Android: ViewTools, RunnableTask, NfcFragment, WebImage, DefaultAdapter,
+         DateTime, RecyclerListView, Notification, Dialog...
 
 # How to add
 
@@ -37,6 +38,46 @@ RunnableTask runnableTask = new RunnableTask() {
     }
 };
 runnableTask.start(this, delayInMilliseconds);
+```
+# NfcFragment
+```java
+//Just extends the NfcFragment class and set these
+public class SomeFragment extends NfcFragment {
+
+    @Override
+    public int setLayout() {
+        return R.layout.some_fragment;//set your fragment layout here
+    }
+    
+    @Override
+    public void onCreate(View view) {
+        //get fragment built view here
+    }
+    
+    @Override
+    public void handleMessage(String message) {
+        //get message here
+    }
+}
+
+//last step that I couldn't avoid unfortunatly
+public class MainActivity extends AppCompatActivity {
+
+    private NfcFragment nfcFragment;
+    @Override
+    protected void onCreate(final Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        nfcFragment = new SomeFragment();
+        ViewTools.changeFragment(this, R.id.main_frame, nfcFragment);
+    }
+    
+    @Override
+    protected void onNewIntent(Intent intent) {
+        setIntent(intent);
+        String nfcTagData = nfcFragment.resolveIntent(intent);
+    }
+}
 ```
 # RecyclerAdapter && WebImage usage example
 ```java
@@ -111,7 +152,37 @@ Console output example:
 V/Debug | 17:43:24 ->: Progress made: 100!
 **/
 ```
+# Notification
+```java
+notification = new Notification(this)
+        .setChannelId(getString(R.string.channel_id))
+        .setIcon(R.drawable.landfill)
+        .setDescription(getString(R.string.notification_description))
+        .setChannelText(getString(R.string.notification_channel_text))
+        .setTitle(getString(R.string.notification_title_plants))
+        .setContentText("")
+        .setTargetClass(PlantFragment.class);
+notification.show();
+```
+# LinkedMap usage exmaple with adaptView
+```java
+LinkedMap<String, MyObject>> myObjectMap = new LinkedMap<>(keyList, myObjectList);
+for (MyObject myObject : myObjectMap.getValues()) {
+    //do something
+}
+...
+MyObject myObject = myObjectMap.get("key");
+...
+//Here's one of the case that made me do this
+private Button button;
 
+@Override
+protected void adaptView(int i, View view) {
+    findViews(view);
+    MyObject myObject = myObjectMap.get(i);    
+    button.setOnClickListener(v -> controller.doSomething(myObject));
+}
+```
 # Tools usage example
 ```java
 Map<String, SomeObject> someObjectMap = getSomeObjectMap();
