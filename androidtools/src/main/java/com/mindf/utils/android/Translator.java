@@ -7,6 +7,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.List;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.SneakyThrows;
@@ -15,10 +17,16 @@ public abstract class Translator {
 
     @Getter @Setter private String source = "en";
     @Getter @Setter private String destination = "fr";
+    @Getter @Setter private boolean json = false;
 
     public abstract void onResult(String result);
 
     public Translator(String text) {
+        new Task().execute(text, source, destination);
+    }
+
+    public Translator(String text, boolean json) {
+        this.json = json;
         new Task().execute(text, source, destination);
     }
 
@@ -28,11 +36,30 @@ public abstract class Translator {
         new Task().execute(text, sourceLang, destinationLang);
     }
 
+    public Translator(String text, String sourceLang, String destinationLang, boolean json) {
+        this.json = json;
+        this.source = sourceLang;
+        this.destination = destinationLang;
+        new Task().execute(text, sourceLang, destinationLang);
+    }
+
     public void add(String text) {
         new Task().execute(text, source, destination);
     }
 
+    public void add(String text, boolean json) {
+        this.json = json;
+        new Task().execute(text, source, destination);
+    }
+
     public void add(String text, String sourceLang, String destinationLang) {
+        this.source = sourceLang;
+        this.destination = destinationLang;
+        new Task().execute(text, sourceLang, destinationLang);
+    }
+
+    public void add(String text, String sourceLang, String destinationLang, boolean json) {
+        this.json = json;
         this.source = sourceLang;
         this.destination = destinationLang;
         new Task().execute(text, sourceLang, destinationLang);
@@ -47,17 +74,56 @@ public abstract class Translator {
     @Override
     protected Task doInBackground(String... strings) {
         args = strings;
-        result = callUrlAndParseResult(strings[0]);
+        if (json) {
+            String nonJson = getStringsInJson(strings[0]);
+            String tempResult = callUrlAndParseResult(nonJson);
+            result = replaceStringsInJson(nonJson, tempResult, strings[0]);
+        } else {
+            result = callUrlAndParseResult(strings[0]);
+        }
         onResult(result);
         return this;
     }
 
+    private String getStringsInJson(String json) {
+        String parts = "";
+        String seperator = ": \"";
+        char end = '\"';
+        for (int i = 0; i < json.length(); i++) {
+            if (json.charAt(i) == seperator.charAt(0)) {
+                ++i;
+                if (json.charAt(i) == seperator.charAt(1)) {
+                    ++i;
+                    if (json.charAt(i) == seperator.charAt(2)) {
+                        ++i;
+                        String substr = "";
+                        while (json.charAt(i) != end) {
+                            substr += json.charAt(i);
+                            ++i;
+                        }
+                        parts += substr + "¤";
+                    }
+                }
+            }
+        }
+        return parts.substring(0, parts.length() - 1);
+    }
+
+    private String replaceStringsInJson(String nonJson, String result, String json) {
+        String nonJsonParts[] = nonJson.split("¤");
+        String resultParts[] = result.split("¤");
+        for (int i = 0; i < nonJsonParts.length - 1; i++) {
+            json = json.replace(nonJsonParts[i], resultParts[i]);
+        }
+        return json;
+    }
+
     private String callUrlAndParseResult(String word) throws Exception {
         String url = "https://translate.googleapis.com/translate_a/single?"+
-                "client=gtx&"+
-                "sl=" + args[1] +
-                "&tl=" + args[2] +
-                "&dt=t&q=" + URLEncoder.encode(word, "UTF-8");
+            "client=gtx&"+
+            "sl=" + args[1] +
+            "&tl=" + args[2] +
+            "&dt=t&q=" + URLEncoder.encode(word, "UTF-8");
         URL obj = new URL(url);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
         con.setRequestProperty("User-Agent", "Mozilla/5.0");
