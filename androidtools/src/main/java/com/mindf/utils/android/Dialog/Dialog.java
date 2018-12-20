@@ -1,9 +1,13 @@
-package com.mindf.utils.android;
+package com.mindf.utils.android.Dialog;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.view.ContextThemeWrapper;
+
+import com.mindf.utils.android.CustomDialogBuilder;
+import com.mindf.utils.android.R;
+import com.mindf.utils.android.ViewTools;
 
 public abstract class Dialog {
 

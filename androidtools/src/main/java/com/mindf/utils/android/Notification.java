@@ -19,6 +19,7 @@ public class Notification {
     private String title = "title";
     private String contentText = "content text";
     private Class targetClass = Notification.class;
+    private int id = 0;
 
     public Notification(Activity activity) {
         this.activity = activity;
@@ -59,14 +60,19 @@ public class Notification {
         return this;
     }
 
-    public void show() {
+    public Notification setId(int id) {
+        this.id = id;
+        return this;
+    }
+
+    public Notification show() {
         //todo put this where it goes and handle moment they are sent
         //todo check to put a green tint to the icon
         NotificationCompat.Builder notificationBuilder = createNotificationBuilder(channelId, icon);
         createNotificationIntent();
         createNotificationChannel(channelText, description, channelId);
-        int id = 0;
         showNotification(id, notificationBuilder);
+        return this;
     }
 
     private NotificationCompat.Builder createNotificationBuilder(String CHANNEL_ID, int icon) {

@@ -319,6 +319,34 @@ public class DateTime {
         return milliSecondsToStringDate((getCurrentMilliSecondsValue() + dayMilliseconds));
     }
 
+    private static String updateValue(String stringDate, int value, double milliseconds) {
+        return milliSecondsToStringDate((getStringDateMilliSeconds(stringDate) + (value * milliseconds)));
+    }
+
+    public static String updateSecond(String stringDate, int value) {
+        return updateValue(stringDate, value, secondMilliseconds);
+    }
+
+    public static String updateMinute(String stringDate, int value) {
+        return updateValue(stringDate, value, minuteMilliseconds);
+    }
+
+    public static String updateHour(String stringDate, int value) {
+        return updateValue(stringDate, value, hourMilliseconds);
+    }
+
+    public static String updateDay(String stringDate, int value) {
+        return updateValue(stringDate, value, dayMilliseconds);
+    }
+
+    public static String updateMonth(String stringDate, int value) {
+        return updateValue(stringDate, value, monthMilliseconds);
+    }
+
+    public static String updateYear(String stringDate, int value) {
+        return updateValue(stringDate, value, yearMilliseconds);
+    }
+
     /** Deprecated **/
     public static String dateToStringDate(Date date) {
         long dateValue = date.getDate();

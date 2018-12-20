@@ -1,4 +1,4 @@
-package com.mindf.utils.android;
+package com.mindf.utils.android.ListAndAdapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
