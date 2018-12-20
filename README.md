@@ -48,6 +48,12 @@ new Translator("hello world I am Dave and it's nice to meet y'all", "en", "fr") 
        ViewTools.logv(result);
    }
 };
+//than you can do if you declare Translator translator = new Translator(...
+translator.setDestination("fr");
+translator.add("A phrase to traduce in french");
+translator.add("Another phrase to traduce in french");
+translator.add("Some other text", "en", "it");
+translator.add("Some other text to traduce in italian");
 ```
 # NfcFragment
 ```java
