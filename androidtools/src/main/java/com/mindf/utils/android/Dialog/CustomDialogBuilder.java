@@ -1,4 +1,4 @@
-package com.mindf.utils.android;
+package com.mindf.utils.android.Dialog;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -9,6 +9,9 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.mindf.utils.android.R;
+import com.mindf.utils.android.ViewTools;
 
 public class CustomDialogBuilder extends AlertDialog.Builder{
 

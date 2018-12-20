@@ -1,4 +1,4 @@
-package com.mindf.utils.android.Dialog;
+package com.mindf.utils.android;
 
 import android.os.Build;
 import android.support.annotation.RequiresApi;

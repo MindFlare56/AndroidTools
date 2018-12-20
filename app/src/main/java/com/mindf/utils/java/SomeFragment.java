@@ -6,21 +6,16 @@ import android.widget.Toast;
 import com.mindf.utils.android.Nfc.NfcFragment;
 
 public class SomeFragment extends NfcFragment {
-
-    private View view;
-
     @Override
     public int setLayout() {
-        return R.layout.some_fragment;
+        return R.layout.some_fragment;//set your fragment layout here
     }
-
     @Override
     public void onCreate(View view) {
-        this.view = view;
+        //get fragment built view here
     }
-
     @Override
     public void handleMessage(String message) {
-        Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
+        //get message here
     }
 }

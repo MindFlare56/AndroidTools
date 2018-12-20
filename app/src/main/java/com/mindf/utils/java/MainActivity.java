@@ -15,22 +15,17 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
 
-    private NfcFragment fragment;
-    @BindView(R.id.nfc_test_view) TextView textView;
-
+    private NfcFragment nfcFragment;
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
-        fragment = new SomeFragment();
-        ViewTools.changeFragment(this, R.id.main_frame, fragment);
+        nfcFragment = new SomeFragment();
+        ViewTools.changeFragment(this, R.id.main_frame, nfcFragment);
     }
-
     @Override
     protected void onNewIntent(Intent intent) {
         setIntent(intent);
-        String message = fragment.resolveIntent(intent);
-        textView.setText(message);
+        String nfcTagData = nfcFragment.resolveIntent(intent);
     }
 }
