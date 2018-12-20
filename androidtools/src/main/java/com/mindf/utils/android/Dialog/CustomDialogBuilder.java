@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.mindf.utils.android.R;
 import com.mindf.utils.android.ViewTools;
 
-public class CustomDialogBuilder extends AlertDialog.Builder{
+public class CustomDialogBuilder extends AlertDialog.Builder {
 
     private View mDialogView;
     private TextView mTitle;
