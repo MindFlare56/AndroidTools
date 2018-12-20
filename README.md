@@ -38,6 +38,43 @@ RunnableTask runnableTask = new RunnableTask() {
 };
 runnableTask.start(this, delayInMilliseconds);
 ```
+# NfcFragment
+```java
+//Just extends the NfcFragment class and set these
+public class SomeFragment extends NfcFragment {
+
+    @Override
+    public int setLayout() {
+        return R.layout.some_fragment;//set your fragment layout here
+    }
+    
+    @Override
+    public void onCreate(View view) {
+        //get fragment built view here
+    }
+    
+    @Override
+    public void handleMessage(String message) {
+        //get message here
+    }
+}
+//last step that I couldn't avoid unfortunatly
+private NfcFragment nfcFragment;
+
+@Override
+protected void onCreate(final Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+    nfcFragment = new SomeFragment();
+    ViewTools.changeFragment(this, R.id.main_frame, nfcFragment);
+}
+
+@Override
+protected void onNewIntent(Intent intent) {
+    setIntent(intent);
+    String nfcTagData = nfcFragment.resolveIntent(intent);
+}
+```
 # RecyclerAdapter && WebImage usage example
 ```java
 listView.setAdapter(new RecyclerAdapter(context, list.size(), R.layout.layout) {
