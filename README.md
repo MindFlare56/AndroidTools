@@ -58,6 +58,7 @@ public class SomeFragment extends NfcFragment {
         //get message here
     }
 }
+
 //last step that I couldn't avoid unfortunatly
 public class MainActivity extends AppCompatActivity {
 
