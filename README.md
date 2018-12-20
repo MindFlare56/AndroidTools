@@ -59,20 +59,21 @@ public class SomeFragment extends NfcFragment {
     }
 }
 //last step that I couldn't avoid unfortunatly
-private NfcFragment nfcFragment;
+public class MainActivity extends AppCompatActivity {
 
-@Override
-protected void onCreate(final Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_main);
-    nfcFragment = new SomeFragment();
-    ViewTools.changeFragment(this, R.id.main_frame, nfcFragment);
-}
-
-@Override
-protected void onNewIntent(Intent intent) {
-    setIntent(intent);
-    String nfcTagData = nfcFragment.resolveIntent(intent);
+    private NfcFragment nfcFragment;
+    @Override
+    protected void onCreate(final Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        nfcFragment = new SomeFragment();
+        ViewTools.changeFragment(this, R.id.main_frame, nfcFragment);
+    }
+    @Override
+    protected void onNewIntent(Intent intent) {
+        setIntent(intent);
+        String nfcTagData = nfcFragment.resolveIntent(intent);
+    }
 }
 ```
 # RecyclerAdapter && WebImage usage example
