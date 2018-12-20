@@ -167,9 +167,11 @@ notification.show();
 ```java
 LinkedMap<String, MyObject>> myObjectMap = new LinkedMap<>(keyList, myObjectList);
 for (MyObject myObject : myObjectMap.getValues()) {
-    MyObject = myObject.get("key");
+    //do something
 }
-
+...
+MyObject myObject = myObjectMap.get("key");
+...
 //Here's one of the case that made me do this
 private Button button;
 
