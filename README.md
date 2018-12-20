@@ -69,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
         nfcFragment = new SomeFragment();
         ViewTools.changeFragment(this, R.id.main_frame, nfcFragment);
     }
+    
     @Override
     protected void onNewIntent(Intent intent) {
         setIntent(intent);
