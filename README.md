@@ -21,6 +21,21 @@ annotationProcessor "com.jakewharton:butterknife-compiler:8.5.1"<br/>
 annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'<br/>
 annotationProcessor "org.projectlombok:lombok:1.16.18"<br/>
 compileOnly "javax.annotation:jsr250-api:1.0"<br/>
+## Unfortunatly require: <br/>
+```android
+android { //put packaginOptions inside your android {} in your build.gradle
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/ASL2.0'
+    }  
+}
+```
 # ------------------------------------------------
 # RunnableTask usage example
 ```java
@@ -48,6 +63,12 @@ new Translator("hello world I am Dave and it's nice to meet y'all", "en", "fr") 
        ViewTools.logv(result);
    }
 };
+//than you can reuse it if you declared Translator translator = new Translator(...
+translator.setDestination("fr");
+translator.add("A phrase to traduce in french");
+translator.add("Another phrase to traduce in french");
+translator.add("Some other text", "en", "it");
+translator.add("Some other text to traduce in italian");
 ```
 # NfcFragment
 ```java
