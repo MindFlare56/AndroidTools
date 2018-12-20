@@ -151,7 +151,35 @@ Console output example:
 V/Debug | 17:43:24 ->: Progress made: 100!
 **/
 ```
+# Notification
+```java
+notification = new Notification(this)
+        .setChannelId(getString(R.string.channel_id))
+        .setIcon(R.drawable.landfill)
+        .setDescription(getString(R.string.notification_description))
+        .setChannelText(getString(R.string.notification_channel_text))
+        .setTitle(getString(R.string.notification_title_plants))
+        .setContentText("")
+        .setTargetClass(PlantFragment.class);
+notification.show();
+```
+# LinkedMap usage exmaple with adaptView
+```java
+LinkedMap<String, MyObject>> myObjectMap = new LinkedMap<>(List<String>, List<MyObject>);
+for (MyObject myObject : myObjectMap.getValues()) {
+    MyObject = myObject.get("key");
+}
 
+//Here's one of the case that made me do this
+private Button button;
+
+@Override
+protected void adaptView(int i, View view) {
+    findViews(view);
+    MyObject myObject = myObjectMap.get(i);    
+    button.setOnClickListener(v -> controller.doSomething(myObject));
+}
+```
 # Tools usage example
 ```java
 Map<String, SomeObject> someObjectMap = getSomeObjectMap();
