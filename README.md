@@ -22,6 +22,7 @@ annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'<br/>
 annotationProcessor "org.projectlombok:lombok:1.16.18"<br/>
 compileOnly "javax.annotation:jsr250-api:1.0"<br/>
 ## Unfortunatly require: <br/>
+```android
 android { //put packaginOptions inside your android {} in your build.gradle
     packagingOptions {
         exclude 'META-INF/DEPENDENCIES'
@@ -34,6 +35,7 @@ android { //put packaginOptions inside your android {} in your build.gradle
         exclude 'META-INF/ASL2.0'
     }  
 }
+```
 # ------------------------------------------------
 # RunnableTask usage example
 ```java
