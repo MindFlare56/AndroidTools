@@ -7,45 +7,47 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
-
 import lombok.Getter;
 import lombok.Setter;
 import lombok.SneakyThrows;
 
 public abstract class Translator {
 
-    @Getter @Setter private String sourceLang = "en";
-    @Getter @Setter private String destinationLang = "fr";
+    @Getter @Setter private String source = "en";
+    @Getter @Setter private String destination = "fr";
 
     public abstract void onResult(String result);
 
     public Translator(String text) {
-        createTask(text);
+        new Task().execute(text, source, destination);
     }
 
     public Translator(String text, String sourceLang, String destinationLang) {
-        this.sourceLang = sourceLang;
-        this.destinationLang = destinationLang;
-        createTask(text);
+        this.source = sourceLang;
+        this.destination = destinationLang;
+        new Task().execute(text, sourceLang, destinationLang);
     }
 
-    private void createTask(String text) {
-        Task task = new Task();
-        task.text = text;
-        task.execute("");
+    public void add(String text) {
+        new Task().execute(text, source, destination);
     }
 
+    public void add(String text, String sourceLang, String destinationLang) {
+        this.source = sourceLang;
+        this.destination = destinationLang;
+        new Task().execute(text, sourceLang, destinationLang);
+    }
 
-
-private class Task extends AsyncTask<String, Void, Task> {
+    private class Task extends AsyncTask<String, Void, Task> {
 
     private String result;
-    private String text;
+    private String[] args;
 
     @SneakyThrows
     @Override
     protected Task doInBackground(String... strings) {
-        result = callUrlAndParseResult(text);
+        args = strings;
+        result = callUrlAndParseResult(strings[0]);
         onResult(result);
         return this;
     }
@@ -53,8 +55,8 @@ private class Task extends AsyncTask<String, Void, Task> {
     private String callUrlAndParseResult(String word) throws Exception {
         String url = "https://translate.googleapis.com/translate_a/single?"+
                 "client=gtx&"+
-                "sl=" + sourceLang +
-                "&tl=" + destinationLang +
+                "sl=" + args[1] +
+                "&tl=" + args[2] +
                 "&dt=t&q=" + URLEncoder.encode(word, "UTF-8");
         URL obj = new URL(url);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
