@@ -165,7 +165,7 @@ notification.show();
 ```
 # LinkedMap usage exmaple with adaptView
 ```java
-LinkedMap<String, MyObject>> myObjectMap = new LinkedMap<>(List<String>, List<MyObject>);
+LinkedMap<String, MyObject>> myObjectMap = new LinkedMap<>(keyList, myObjectList);
 for (MyObject myObject : myObjectMap.getValues()) {
     MyObject = myObject.get("key");
 }
