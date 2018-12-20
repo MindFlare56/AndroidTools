@@ -1,4 +1,5 @@
 [![](https://jitpack.io/v/MindFlare56/Tools.svg)](https://jitpack.io/#MindFlare56/Tools)
+[![API](https://img.shields.io/badge/API-26%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=26)
 # Tools
 
 Tools to make your life easier in java and android
