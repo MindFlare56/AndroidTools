@@ -40,6 +40,15 @@ RunnableTask runnableTask = new RunnableTask() {
 };
 runnableTask.start(this, delayInMilliseconds);
 ```
+# Translator
+```java
+new Translator("hello world I am Dave and it's nice to meet y'all", "en", "fr") {
+   @Override             //lang can be optional it is english to french default
+   public void onResult(String result) {
+       ViewTools.logv(result);
+   }
+};
+```
 # NfcFragment
 ```java
 //Just extends the NfcFragment class and set these
