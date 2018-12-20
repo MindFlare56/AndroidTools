@@ -3,7 +3,8 @@
 
 Tools to make your life easier in java and android
 - Java: DataTime, LinkedMap, Tools...
-- Android: ViewTools, RunnableTask, WebImage, DefaultAdapter, DateTime, RecyclerListView, Notification, Dialog...
+- Android: ViewTools, RunnableTask, NfcFragment, WebImage, DefaultAdapter,
+         DateTime, RecyclerListView, Notification, Dialog...
 
 # How to add
 
