@@ -230,10 +230,10 @@ listView.setAdapter(new DefaultAdapter(context, list.size(), R.layout.layout) {
 ## Lambda support:<br/> //(under android in build.gradle)
 ```android
 compileOptions {
-         sourceCompatibility = '1.8'
-         targetCompatibility = '1.8'
-         sourceCompatibility JavaVersion.VERSION_1_8
-         targetCompatibility JavaVersion.VERSION_1_8
+    sourceCompatibility = '1.8'
+    targetCompatibility = '1.8'
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
 }
 ```
 # Project dependencies:
