@@ -271,7 +271,7 @@ protected void onCreate(@Nullable Bundle savedInstanceState) {
          @Override
          public void onLogRequestEnd() {
               ViewTools.logv("rdy to change activity !");
-              ViewTools.changeActivity(ref, MainActivity.class);
+              ViewTools.changeActivity(ref, NextActivity.class);
          }
      };
      loginHandler.log();
