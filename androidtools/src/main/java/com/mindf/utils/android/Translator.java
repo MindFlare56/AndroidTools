@@ -1,12 +1,19 @@
 package com.mindf.utils.android;
 
 import android.os.AsyncTask;
+
+import com.google.api.client.util.Lists;
+
 import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import lombok.Getter;
@@ -74,48 +81,9 @@ public abstract class Translator {
     @Override
     protected Task doInBackground(String... strings) {
         args = strings;
-        if (json) {
-            String nonJson = getStringsInJson(strings[0]);
-            String tempResult = callUrlAndParseResult(nonJson);
-            result = replaceStringsInJson(nonJson, tempResult, strings[0]);
-        } else {
-            result = callUrlAndParseResult(strings[0]);
-        }
+        result = callUrlAndParseResult(strings[0]);
         onResult(result);
         return this;
-    }
-
-    private String getStringsInJson(String json) {
-        String parts = "";
-        String seperator = ": \"";
-        char end = '\"';
-        for (int i = 0; i < json.length(); i++) {
-            if (json.charAt(i) == seperator.charAt(0)) {
-                ++i;
-                if (json.charAt(i) == seperator.charAt(1)) {
-                    ++i;
-                    if (json.charAt(i) == seperator.charAt(2)) {
-                        ++i;
-                        String substr = "";
-                        while (json.charAt(i) != end) {
-                            substr += json.charAt(i);
-                            ++i;
-                        }
-                        parts += substr + "¤";
-                    }
-                }
-            }
-        }
-        return parts.substring(0, parts.length() - 1);
-    }
-
-    private String replaceStringsInJson(String nonJson, String result, String json) {
-        String nonJsonParts[] = nonJson.split("¤");
-        String resultParts[] = result.split("¤");
-        for (int i = 0; i < nonJsonParts.length - 1; i++) {
-            json = json.replace(nonJsonParts[i], resultParts[i]);
-        }
-        return json;
     }
 
     private String callUrlAndParseResult(String word) throws Exception {

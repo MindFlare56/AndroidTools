@@ -1,9 +1,10 @@
-package com.mindf.utils.java;
+package com.mindf.utils.java.View;
 
 import android.view.View;
 import android.widget.Toast;
 
 import com.mindf.utils.android.Nfc.NfcFragment;
+import com.mindf.utils.java.R;
 
 public class SomeFragment extends NfcFragment {
     @Override

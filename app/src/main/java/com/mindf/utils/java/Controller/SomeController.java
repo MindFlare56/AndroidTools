@@ -1,7 +1,7 @@
-package com.mindf.utils.java;
+package com.mindf.utils.java.Controller;
 
-import com.mindf.utils.java.Experimental.Controller.App.Facade;
-import com.mindf.utils.java.Experimental.Controller.Database.Query;
+import com.mindf.utils.android.Expirimental.Controller.App.Facade;
+import com.mindf.utils.android.Expirimental.Controller.Database.Query;
 
 import org.json.JSONException;
 

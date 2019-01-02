@@ -26,6 +26,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
@@ -49,6 +55,7 @@ dependencies {
     implementation 'com.jakewharton:butterknife-compiler:8.5.1'
     implementation group: 'org.json', name: 'json', version: '20180813'
     implementation project(path: ':androidtools')
+    implementation "com.ederdoski.ble:simpleble:1.0"
 }
 
 allprojects {
