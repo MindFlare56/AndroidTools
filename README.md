@@ -268,11 +268,11 @@ protected void onCreate(@Nullable Bundle savedInstanceState) {
      LoginFields loginFields = new LoginFields(username, password, rememberMe, submit);
      loginFields.setRequestFields("http://yourIpHere/phpFunctionHere", "userTableName", "passwordTableName");
      LoginHandler loginHandler = new LoginHandler(this, loginFields) {
-     @Override
-          public void onLogRequestEnd() {
-               ViewTools.logv("rdy to change activity !");
-               ViewTools.changeActivity(ref, MainActivity.class);
-          }
+         @Override
+         public void onLogRequestEnd() {
+              ViewTools.logv("rdy to change activity !");
+              ViewTools.changeActivity(ref, MainActivity.class);
+         }
      };
      loginHandler.log();
 }
