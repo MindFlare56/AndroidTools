@@ -227,6 +227,31 @@ listView.setAdapter(new DefaultAdapter(context, list.size(), R.layout.layout) {
     }
 });
 ```
+# ---------------------------
+## Lambda support:<br/> //(under android in build.gradle)
+```android
+compileOptions {
+    sourceCompatibility = '1.8'
+    targetCompatibility = '1.8'
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+}
+```
+# Project dependencies:
+    compileOnly "javax.annotation:jsr250-api:1.0"
+    annotationProcessor "com.jakewharton:butterknife:8.5.1"
+    annotationProcessor "com.jakewharton:butterknife-compiler:8.5.1"
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
+    annotationProcessor "org.projectlombok:lombok:1.16.18"
+    implementation 'org.jetbrains:annotations:15.0'
+    implementation 'com.github.bumptech.glide:glide:4.8.0'
+    implementation 'com.jakewharton:butterknife:8.5.1'
+    implementation 'com.jakewharton:butterknife-compiler:8.5.1'
+    implementation 'com.github.psinetron:slycalendarview:0.0.7'         
+    implementation 'org.projectlombok:lombok:1.16.18'
+    
+# --------------------------------
+# In beta
 # LoginHandler
 ```java
 @BindView(R.id.lh_username) EditText username;
@@ -252,25 +277,3 @@ LoginHandler loginHandler = new LoginHandler(this, loginFields) {
 loginHandler.log();
 }
 ```
-# ---------------------------
-## Lambda support:<br/> //(under android in build.gradle)
-```android
-compileOptions {
-    sourceCompatibility = '1.8'
-    targetCompatibility = '1.8'
-    sourceCompatibility JavaVersion.VERSION_1_8
-    targetCompatibility JavaVersion.VERSION_1_8
-}
-```
-# Project dependencies:
-    compileOnly "javax.annotation:jsr250-api:1.0"
-    annotationProcessor "com.jakewharton:butterknife:8.5.1"
-    annotationProcessor "com.jakewharton:butterknife-compiler:8.5.1"
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
-    annotationProcessor "org.projectlombok:lombok:1.16.18"
-    implementation 'org.jetbrains:annotations:15.0'
-    implementation 'com.github.bumptech.glide:glide:4.8.0'
-    implementation 'com.jakewharton:butterknife:8.5.1'
-    implementation 'com.jakewharton:butterknife-compiler:8.5.1'
-    implementation 'com.github.psinetron:slycalendarview:0.0.7'         
-    implementation 'org.projectlombok:lombok:1.16.18'
