@@ -5,7 +5,7 @@
 Tools to make your life easier in java and android
 - Java: DataTime, LinkedMap, Tools...
 - Android: ViewTools, RunnableTask, NfcFragment, WebImage, DefaultAdapter,
-         DateTime, RecyclerListView, Notification, Dialog...
+         DateTime, RecyclerListView, Notification, Dialog, Translator...
 
 # How to add
 
@@ -22,6 +22,7 @@ annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'<br/>
 annotationProcessor "org.projectlombok:lombok:1.16.18"<br/>
 compileOnly "javax.annotation:jsr250-api:1.0"<br/>
 ## Unfortunatly require: <br/>
+in android studio: file->settings->plugins->browse reposistories->Lobok Plugin->Install<br/>
 ```android
 android { //put packaginOptions inside your android {} in your build.gradle
     packagingOptions {
@@ -227,6 +228,15 @@ listView.setAdapter(new DefaultAdapter(context, list.size(), R.layout.layout) {
 });
 ```
 # ---------------------------
+## Lambda support:<br/> //(under android in build.gradle)
+```android
+compileOptions {
+    sourceCompatibility = '1.8'
+    targetCompatibility = '1.8'
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+}
+```
 # Project dependencies:
     compileOnly "javax.annotation:jsr250-api:1.0"
     annotationProcessor "com.jakewharton:butterknife:8.5.1"
@@ -239,3 +249,31 @@ listView.setAdapter(new DefaultAdapter(context, list.size(), R.layout.layout) {
     implementation 'com.jakewharton:butterknife-compiler:8.5.1'
     implementation 'com.github.psinetron:slycalendarview:0.0.7'         
     implementation 'org.projectlombok:lombok:1.16.18'
+    
+# --------------------------------
+# In beta
+# LoginHandler
+```java
+@BindView(R.id.lh_username) EditText username;
+@BindView(R.id.lh_password) EditText password;
+@BindView(R.id.lh_checkbox) CheckBox rememberMe;
+@BindView(R.id.lh_button) Button submit;
+
+@Override
+protected void onCreate(@Nullable Bundle savedInstanceState) {
+     super.onCreate(savedInstanceState);
+     setContentView(R.layout.login_handler);
+     ButterKnife.bind(this);
+     Activity ref = this;
+     LoginFields loginFields = new LoginFields(username, password, rememberMe, submit);
+     loginFields.setRequestFields("http://yourIpHere/phpFunctionHere", "userTableName", "passwordTableName");
+     LoginHandler loginHandler = new LoginHandler(this, loginFields) {
+         @Override
+         public void onLogRequestEnd() {
+              ViewTools.logv("rdy to change activity !");
+              ViewTools.changeActivity(ref, NextActivity.class);
+         }
+     };
+     loginHandler.log();
+}
+```
