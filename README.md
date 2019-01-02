@@ -261,19 +261,19 @@ compileOptions {
 
 @Override
 protected void onCreate(@Nullable Bundle savedInstanceState) {
-super.onCreate(savedInstanceState);
-setContentView(R.layout.login_handler);
-ButterKnife.bind(this);
-Activity ref = this;
-LoginFields loginFields = new LoginFields(username, password, rememberMe, submit);
-loginFields.setRequestFields("http://yourIpHere/phpFunctionHere", "userTableName", "passwordTableName");
-LoginHandler loginHandler = new LoginHandler(this, loginFields) {
-   @Override
-   public void onLogRequestEnd() {
-       ViewTools.logv("rdy to change activity !");
-       ViewTools.changeActivity(ref, MainActivity.class);
-   }
-};
-loginHandler.log();
+     super.onCreate(savedInstanceState);
+     setContentView(R.layout.login_handler);
+     ButterKnife.bind(this);
+     Activity ref = this;
+     LoginFields loginFields = new LoginFields(username, password, rememberMe, submit);
+     loginFields.setRequestFields("http://yourIpHere/phpFunctionHere", "userTableName", "passwordTableName");
+     LoginHandler loginHandler = new LoginHandler(this, loginFields) {
+     @Override
+          public void onLogRequestEnd() {
+               ViewTools.logv("rdy to change activity !");
+               ViewTools.changeActivity(ref, MainActivity.class);
+          }
+     };
+     loginHandler.log();
 }
 ```
