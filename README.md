@@ -20,8 +20,8 @@ allprojects {
 	maven { url 'https://jitpack.io' }
      }
 }
+implementation 'com.github.MindFlare56.Tools:androidtools:1.4.5'
 ```
-example: implementation 'com.github.MindFlare56.Tools:androidtools:1.4.5'<br/>
 <br/>
 ## Also require these usefull tools: <br/>
 annotationProcessor "com.jakewharton:butterknife:8.5.1"<br/>
