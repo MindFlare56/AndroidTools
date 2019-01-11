@@ -14,7 +14,7 @@ implementation 'com.github.MindFlare56:Tools:Tag'
 
 Visit the below link to get the current version and the installation explanation<br/>
 https://jitpack.io/#MindFlare56/Tools<br/>
-```android
+```java
 allprojects {
     repositories {
 	maven { url 'https://jitpack.io' }
