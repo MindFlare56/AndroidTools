@@ -14,6 +14,7 @@ implementation 'com.github.MindFlare56:Tools:Tag'
 
 Visit the below link to get the current version and the installation explanation<br/>
 https://jitpack.io/#MindFlare56/Tools<br/>
+<br/>
 example: implementation 'com.github.MindFlare56.Tools:androidtools:1.4.5'<br/>
 <br/>
 ## Also require these usefull tools: <br/>
