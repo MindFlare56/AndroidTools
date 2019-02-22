@@ -16,7 +16,7 @@ implementation 'com.github.MindFlare56:Tools:Tag'
 Visit the below link to get the current version and the installation explanation<br/>
 https://jitpack.io/#MindFlare56/Tools<br/>
 
-#---------------------------------
+# ---------------------------------
 <br/>
 ## Also require these usefull tools: <br/>
 annotationProcessor "com.jakewharton:butterknife:8.5.1"<br/>
