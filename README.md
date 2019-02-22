@@ -18,7 +18,7 @@ https://jitpack.io/#MindFlare56/Tools<br/>
 
 # ---------------------------------
 <br/>
-## Also require these usefull tools: <br/>
+## Also require these usefull tools:
 annotationProcessor "com.jakewharton:butterknife:8.5.1"<br/>
 annotationProcessor "com.jakewharton:butterknife-compiler:8.5.1"<br/>
 annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'<br/>
