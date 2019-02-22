@@ -72,12 +72,12 @@ runnableTask.start(this, delayInMilliseconds);
 # Translator
 ```java
 new Translator("hello world I am Dave and it's nice to meet y'all", "en", "fr") {
-   @Override             //lang can be optional it is english to french default
+   @Override             //lang can be optional it is English  to French default
    public void onResult(String result) {
        ViewTools.logv(result);
    }
 };
-//than you can reuse it if you declared Translator translator = new Translator(...
+//then you can reuse it if you declared Translator translator = new Translator(...
 translator.setDestination("fr");
 translator.add("A phrase to traduce in french");
 translator.add("Another phrase to traduce in french");
