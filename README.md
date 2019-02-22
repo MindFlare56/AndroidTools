@@ -45,6 +45,7 @@ android { //put packaginOptions inside your android {} in your build.gradle
     }  
 }
 ```
+#
 # ------------------------------------------------
 # RunnableTask usage example
 ```java
