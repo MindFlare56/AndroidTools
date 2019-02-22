@@ -26,7 +26,6 @@ annotationProcessor "org.projectlombok:lombok:1.16.18"<br/>
 compileOnly "javax.annotation:jsr250-api:1.0"<br/>
 ## Unfortunatly require: <br/>
 in android studio: file->settings->plugins->browse reposistories->Lobok Plugin->Install
-#
 
 ```android
 allprojects {
