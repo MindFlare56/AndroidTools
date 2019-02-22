@@ -15,7 +15,8 @@ implementation 'com.github.MindFlare56:Tools:Tag'
 
 Visit the below link to get the current version and the installation explanation<br/>
 https://jitpack.io/#MindFlare56/Tools<br/>
-```java
+
+```android
 allprojects {
     repositories {
 	maven { url 'https://jitpack.io' }
@@ -33,6 +34,7 @@ compileOnly "javax.annotation:jsr250-api:1.0"<br/>
 ## Unfortunatly require: <br/>
 in android studio: file->settings->plugins->browse reposistories->Lobok Plugin->Install<br/>
 #
+#
 ```java
 android { //put packaginOptions inside your android {} in your build.gradle
     packagingOptions {
@@ -47,6 +49,7 @@ android { //put packaginOptions inside your android {} in your build.gradle
     }  
 }
 ```
+#
 # ------------------------------------------------
 # RunnableTask usage example
 ```java
