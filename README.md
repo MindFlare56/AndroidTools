@@ -1,4 +1,30 @@
 
+[![](https://jitpack.io/v/MindFlare56/Tools.svg)](https://jitpack.io/#MindFlare56/Tools)
+[![API](https://img.shields.io/badge/API-26%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=26)
+# Tools
+
+Tools to make your life easier in java and android
+- Java: DataTime, LinkedMap, Tools...
+- Android: ViewTools, RunnableTask, NfcFragment, WebImage, DefaultAdapter,
+         DateTime, RecyclerListView, Notification, Dialog, Translator...
+
+# How to add
+
+Add this line + the current version to your app.gradle:<br>
+implementation 'com.github.MindFlare56:Tools:Tag'
+
+Visit the below link to get the current version and the installation explanation<br/>
+https://jitpack.io/#MindFlare56/Tools<br/>
+```java
+allprojects {
+    repositories {
+	maven { url 'https://jitpack.io' }
+     }
+}
+implementation 'com.github.MindFlare56.Tools:androidtools:1.4.5'
+```
+<br/>
+
 # ------------------------------------------------
 # RunnableTask usage example
 ```java
