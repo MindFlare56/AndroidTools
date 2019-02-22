@@ -24,7 +24,16 @@ allprojects {
 implementation 'com.github.MindFlare56.Tools:androidtools:1.4.5'
 ```
 <br/>
+## Also require these usefull tools: <br/>
+annotationProcessor "com.jakewharton:butterknife:8.5.1"<br/>
+annotationProcessor "com.jakewharton:butterknife-compiler:8.5.1"<br/>
+annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'<br/>
+annotationProcessor "org.projectlombok:lombok:1.16.18"<br/>
+compileOnly "javax.annotation:jsr250-api:1.0"<br/>
+## Unfortunatly require: <br/>
+in android studio: file->settings->plugins->browse reposistories->Lobok Plugin->Install<br/>
 
+#
 # ------------------------------------------------
 # RunnableTask usage example
 ```java
