@@ -24,15 +24,21 @@ allprojects {
 }
 implementation 'com.github.MindFlare56.Tools:androidtools:1.4.5'
 ```
-<br/>
-## Also require these usefull tools: <br/>
-annotationProcessor "com.jakewharton:butterknife:8.5.1"<br/>
-annotationProcessor "com.jakewharton:butterknife-compiler:8.5.1"<br/>
-annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'<br/>
-annotationProcessor "org.projectlombok:lombok:1.16.18"<br/>
-compileOnly "javax.annotation:jsr250-api:1.0"<br/>
-## Unfortunatly require: <br/>
-in android studio: file->settings->plugins->browse reposistories->Lobok Plugin->Install<br/>
+#
+```java
+android { //put packaginOptions inside your android {} in your build.gradle
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/ASL2.0'
+    }  
+}
+```
 # ------------------------------------------------
 # RunnableTask usage example
 ```java
