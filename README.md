@@ -16,6 +16,18 @@ implementation 'com.github.MindFlare56:Tools:Tag'
 Visit the below link to get the current version and the installation explanation<br/>
 https://jitpack.io/#MindFlare56/Tools<br/>
 
+#---------------------------------
+<br/>
+## Also require these usefull tools: <br/>
+annotationProcessor "com.jakewharton:butterknife:8.5.1"<br/>
+annotationProcessor "com.jakewharton:butterknife-compiler:8.5.1"<br/>
+annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'<br/>
+annotationProcessor "org.projectlombok:lombok:1.16.18"<br/>
+compileOnly "javax.annotation:jsr250-api:1.0"<br/>
+## Unfortunatly require: <br/>
+in android studio: file->settings->plugins->browse reposistories->Lobok Plugin->Install
+#
+
 ```android
 allprojects {
     repositories {
