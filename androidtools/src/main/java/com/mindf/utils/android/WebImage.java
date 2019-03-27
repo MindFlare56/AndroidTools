@@ -11,7 +11,7 @@ public class WebImage {
         Glide.with(activity).load(url).apply(new RequestOptions().override(width, height)).into(image);
     }
 	
-	public static void setImageView(Activity activity, ImageView image, String url) {
+    public static void setImageView(Activity activity, ImageView image, String url) {
         Glide.with(activity).load(url).into(image);
     }
 }
