@@ -2,7 +2,6 @@ package com.mindf.utils.android;
 
 import android.app.Activity;
 import android.support.annotation.Nullable;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Timer;
