@@ -42,6 +42,7 @@ public class LinkedMap<Key, Value> extends LinkedHashMap<Key, Value> implements 
         return new Link<>(key, value);
     }
 
+    //todo put reference to the map on the list instead of adding the variable
     public Value put(Key key, Value value) {
         linkedHashMap.put(key, value);
         list.add(new Link<>(key, value));
